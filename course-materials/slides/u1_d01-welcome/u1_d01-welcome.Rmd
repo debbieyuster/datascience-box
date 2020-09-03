@@ -20,7 +20,7 @@ library(tidyverse)
 library(emo)
 ```
 
-class: center, middle
+class: middle
 
 # Hello world!
 
@@ -97,7 +97,7 @@ All course materials will be posted on [Canvas](http://ramapo.instructure.com/)
 
 ---
 
-class: center, middle
+class: middle
 
 # Data in the wild
 
@@ -203,12 +203,8 @@ Once you're done, open the Participants panel and click the green check mark. If
 
 .your-turn[
 
-<!-- **Option 2.** -->
-
-- On RStudio Cloud, start the assignment called `AE 01b - COVID`.
-- If you'd rather not work with COVID data, you may instead choose  
-`AE 01a - UN Votes`. 
-- In the Files pane in the bottom right corner, spot the file called `covid.Rmd` (or `unvotes.Rmd`, if you chose the UN option). Open it, and then click on the "Knit" button.
+- On RStudio Cloud, start the assignment called `AE 01 - COVID`.
+- In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
 - Once done, make a Yes (green check mark) in Webex. If you have questions, raise your hand (click the Hand).
@@ -216,7 +212,7 @@ Once you're done, open the Participants panel and click the green check mark. If
 
 ---
 
-class: center, middle
+class: middle
 
 # Course structure and policies
 
@@ -248,9 +244,11 @@ class: center, middle
 ## Tips for asking questions
 
 - First search existing discussion for answers. If the question has already been answered, you're done! If it has already been asked but you're not satisfied with the answer, add to the thread. 
+
 <!-- - Give your question context from course concepts, not course assignments. -->
 <!--     - Good context: "I have a question on filtering" -->
 <!--     - Bad context: "I have a question on HW 1 question 4" -->
+
 - Be precise in your description:
     - Good description: "I am getting the following error and I'm not sure how to resolve it - `Error: could not find function "ggplot"`"
     - Bad description: "R giving errors, help me! Aaaarrrrrgh!” 
