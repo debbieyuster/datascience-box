@@ -98,17 +98,17 @@ class: middle
 
 - R is a statistical programming language
 - RStudio is a convenient interface for R (an integrated development environment, IDE)
-- At its simplest:<sup>[+]</sup>
+- At its simplest:  (Source: [Modern Dive](https://moderndive.com/))
     - R is like a car’s engine
     - RStudio is like a car’s dashboard
 
-```{r fig.align="center", echo=FALSE}
+```{r fig.align="center", echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/engine-dashboard.png")
 ```
 
-.footnote[
-[+] Source: [Modern Dive](https://moderndive.com/)
-]
+<!-- .footnote[ -->
+<!-- [+] Source: [Modern Dive](https://moderndive.com/) -->
+<!-- ] -->
 
 ---
 
