@@ -8,17 +8,40 @@ output:
 link-citations: yes
 ---
 
+# Learning goals
+
+- Get acquainted with R and RStudio, which we will be using throughout the course to analyze data as well as to learn the statistical concepts discussed in the course. 
+- Get practice using with Git and GitHub.
+- Appreciate the value of visualization in exploring the relationship between variables.
+- Start using R for building plots and calculating summary statistics.
+
+# Introduce yourself
+
+At the start of each session, you will be given a 5-minute warm-up exercise to discuss with your group. This time, use this as an opportunity to meet your course mates. What's everyone's favorite emoji and why? And the least favorite?
+
+# Terminology
+
+We've already thrown around a few new terms, so let's define them before we proceed.
+
 ```{marginfigure}
-R is the name of the programming language itself and RStudio is a convenient interface.
+You can think about it as R is the engine of the car, and RStudio is the dashboard.
 ```
 
-The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course both to learn the statistical concepts discussed in the course and to analyze real data and come to informed conclusions. 
+- **R**: Name of the programming language we will be using throughout the course.
+- **RStudio**: An integrated development environment for R. In other words, a convenient interface for writing and running R code.
 
 ```{marginfigure}
-git is a version control system (like "Track Changes" features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).
+Git is like the "Track Changes" features from Microsoft Word on steroids, and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).
 ```
 
-An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.
+- **Git**: A version control system.
+- **GitHub**: A web platform for hosting version controlled files and facilitating collaboration among users.
+- **Repository**: A Git repository repository contains all of your project's files and stores each file's revision history. It's common to refer to a repository as a repo. 
+  - In this course, each assignment you work on will be contained in a Git repo. 
+  - For individual assignments, only you will have access to the repo. For team assignments, all team members will have access to a single repo where they work collaboratively.
+  - All repos associated with this course are housed in a GitHub organization: [`rcnj-ids-fa20`](https://github.com/rcnj-ids-fa20). The organization is set up such that students can only see repos they have access to, but the course staff can see all of them.
+  
+# Starting slow
 
 As the labs progress, you are encouraged to explore beyond what the labs dictate; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.
 
@@ -52,12 +75,19 @@ knitr::include_graphics("img/paste-url.png")
 
 ## RStudio & R Markdown
 
-As a reminder, here are two images to get you (re)oriented with RStudio and R Markdown layouts:
-Below are the general components of an RStudio project. 
+RStudio is comprised of four panes: 
 
 ```{r echo=FALSE, fig.fullwidth = TRUE, out.width = "90%"}
 knitr::include_graphics("img/rstudio-panes.png")
 ```
+
+- On the bottom left is the Console, this is where you can write code that will be evaluated. Try typing `2 + 2` here and hit enter, what do you get?
+
+- On the bottom right is the Files pane, as well as other panes that will come handy as we start our analysis.
+
+- If you click on a file, it will open in the editor, on the top left pane.
+
+- Finally, the top right pane shows your Environment. If you define a variable it would show up there. Try typing `x <- 2` in the Console and hit enter, what do you get in the Environment pane? Importantly, this pane is also where the Git interface lives. We will be using that regularly throughout this lab.
 
 Below are the general components of an RMarkdown file. 
 
@@ -69,80 +99,32 @@ To get more details about the RStudio project, RMarkdown file, and just R in gen
 
 ## Packages
 
-In this lab we will work with two packages: `datasauRus` which contains the dataset, and `tidyverse` which is a collection of packages for doing data analysis in a "tidy" way.
+R is an open-source language, and developers contribute functionality to R via packages. In this lab we will work with three packages: `datasauRus` which contains the dataset, `tidyverse` which is a collection of packages for doing data analysis in a "tidy" way, and `usethis` for setting our Git credentials.
 
-Note, if you need to install the packages, you can install the `tidyverse` and `datasauRus` packages in the **console** (watch out for capitalization), but if you loaded the base project when creating this RStudio Cloud project, some packages should already be installed, and only need to be loaded (remember that the console and the R Markdown environments are separate!). (There is no harm in installing a package that is already installed.)
-
-Install these packages by running the following in the **Console** window of RStudio.
-
-```{r eval = FALSE}
-install.packages("tidyverse")
-install.packages("datasauRus")
-```
-
-Now that the necessary packages are installed, you should be able to Knit your document and see the results.
-Open the R Markdown (Rmd) file in your project by clicking its name in the lower right pane Files tab. Knit your document by clicking Knit at the top of the Source Editor pane.
-
-```{r echo=FALSE, fig.fullwidth = TRUE, out.width = "90%"}
-knitr::include_graphics("img/knit.png")
-```
-
-If you'd like to run your code in the Console as well (as an optional addition to knitting your R Markdown document) you'll also need to load the packages there. To do so, run the following in the console. 
+Load these packages by running the following in the Console (type or paste each line in the Console, pressing Enter after each).
 
 ```{r message=FALSE}
 library(tidyverse) 
 library(datasauRus)
+library(usethis)
 ```
 
-Note that the packages are also loaded using these same commands in your R Markdown document.
+Note that the packages are also loaded with the same commands in your R Markdown document.
 
-To summarize the two steps in enabling packages:
-
-**1.**   A package gets **installed** once per project by either:
-
-+ inheriting the package installation from the base project, or
-
-+ using the `install.packages()` command in the console, and then
-
-**2.**   The package gets **loaded** once per R session using the `library()` command, either within the R Markdown document or from the console.
-
-## Configure git 
-
-There is one more piece of housekeeping we need to take care of before we get started. Specifically,  we need to configure your git so that RStudio can communicate with GitHub. This requires two pieces of information: your name and email address.
-
-To do so, you will use the `use_git_config` function from the `usethis` package. 
-
-Type the following lines of code in the **console** in RStudio, filling in your name and email address.
+# Hello Git!
 
 ```{marginfigure}
-The email address is the one tied to your GitHub account. 
+Your email address is the address tied to your GitHub account and your name should be first and last name.
 ```
 
-```{r eval=FALSE}
-library(usethis)
-use_git_config(user.name = "your name", user.email = "your email")
-```
+Before we can get started we need to take care of some required housekeeping. Specifically,  we need to do some configuration so that RStudio can communicate with GitHub. This requires two pieces of information: your email address and your name.
 
-For example, mine would be 
+Run the following (but update it for your name and email!) in the Console to configure git. Be sure to use the same email address you used for your GitHub registration.
 
-```{r eval=FALSE}
-library(usethis)
-use_git_config(user.name = "Debbie Yuster", user.email = "dyuster@ramapo.edu")
-```
-
-If you get the error message
-
-```{r eval=FALSE}
-Error in library(usethis) : there is no package called ‘usethis’
-```
-
-then you need to install the `usethis` package. Run the following code in the console to install the package. Then, rerun the `use_git_config` function with your name and the email address associated with your GitHub account.
-
-```{r eval=FALSE}
-install.package("usethis")
-```
-
-Once you run the configuration code, your values for `user.name` and `user.email` will display in the console. If your `user.name` and `user.email` are correct, you're good to go! Otherwise, run the code again with the necessary changes.
+```{r git-config, eval=FALSE}
+use_git_config(user.name = "Your Name", 
+               user.email = "your.email@address.com")
+``` 
 
 # Warm up
 
@@ -185,7 +167,7 @@ You don't have to commit after every change, this would get quite cumbersome. Yo
 
 Now that you have made an update and committed this change, it's time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean the course instructor (your repos in this course are private to you and me, only). In later weeks, you will be doing labs in groups and will want your groupmates to see your changes as well.
 
-In order to push your changes to GitHub, you must have **staged** your **commit** to be pushed. Then click on **Push**. This will prompt a dialogue box where you first need to enter your GitHub username, and then your GitHub password. Don't worry, we will soon teach you how to save your password so you don't have to enter it every time. But for now you'll have to manually enter your username and password each time you push, in order to gain some experience with the process.
+In order to push your changes to GitHub, you must have **staged** your **commit** to be pushed - this is what you did in the previous section. Then click on **Push**. This will prompt a dialogue box where you first need to enter your GitHub username, and then your GitHub password. Don't worry, we will soon teach you how to save your password so you don't have to enter it every time. But for now you'll have to manually enter your username and password each time you push, in order to gain some experience with the process.
 
 # The data
 
