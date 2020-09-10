@@ -47,7 +47,7 @@ As the labs progress, you are encouraged to explore beyond what the labs dictate
 
 And to make versioning simpler, this is a solo lab. Additionally, we want to make sure everyone gets a significant amount of time at the steering wheel. In the future you'll learn about collaborating on GitHub and produce a single lab report for your team.
 
-**Your instructor will lead you through the Getting started and Warm up sections.** 
+<!-- **Your instructor will lead you through the Getting started and Warm up sections.**  -->
 
 # Getting started
 
@@ -63,7 +63,7 @@ Each of your assignments will begin with the following steps. You saw these once
 knitr::include_graphics("img/clone-repo.png")
 ```
 
-- Go to RStudio Cloud and into the course workspace. Create a **New Project from Git Repo**. You will need to click on the down arrow next to the **New Project** button to see this option.
+- Go to RStudio Cloud and into the **course workspace, Data-101-fall-2020** (not "Your Workspace"). Click on the down arrow next to the **New Project** button and select **New Project from Git Repo**.
 
 ```{r paste-gh-repo-url, echo = FALSE,  out.width = "80%"}
 knitr::include_graphics("img/paste-url.png")
@@ -89,7 +89,7 @@ knitr::include_graphics("img/rstudio-panes.png")
 
 - Finally, the top right pane shows your Environment. If you define a variable it would show up there. Try typing `x <- 2` in the Console and hit enter, what do you get in the Environment pane? Importantly, this pane is also where the Git interface lives. We will be using that regularly throughout this lab.
 
-Below are the general components of an RMarkdown file. 
+Below are the general components of an RMarkdown file - this picture is just to get you oriented. 
 
 ```{r echo=FALSE, fig.fullwidth = TRUE, out.width = "90%"}
 knitr::include_graphics("img/rmarkdown.jpg")
@@ -132,18 +132,11 @@ Before we introduce the data, let's warm up with some simple exercises. The foll
 
 <div style="position:relative;height:0;padding-bottom:30%"><iframe width="600" height="320" src="https://www.youtube.com/embed/XE8h8jIyu04" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
-## Project name
-
-Currently your project is called *Untitled Project*. Update the name of your project to be "Lab 01 - Hello R".
-
-```{r untitled-project, fig.fullwidth=TRUE, echo = FALSE}
-knitr::include_graphics("img/untitled-project.png")
-```
 
 ## YAML
 
 The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "YAML Ain't Markup Language". It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
-In your R Markdown (Rmd) file, change the author name to your name, and knit the document.
+In your R Markdown (Rmd) file, change the author name to your name, and **knit** the document.
 
 ```{r yaml-raw-to-rendered, fig.fullwidth=TRUE, echo = FALSE}
 knitr::include_graphics("img/yaml-raw-to-rendered.png")
@@ -153,9 +146,9 @@ knitr::include_graphics("img/yaml-raw-to-rendered.png")
 
 Now, go to the Git pane in your RStudio instance. This will be in the top right hand corner in a separate tab.
 
-If you have made changes to your Rmd file, you should see it listed here. Click on it to select it in this list and then click on **Diff**. This shows you the <u>diff</u>erence between the last committed state of the document and its current state that includes your changes. You should see deletions in red and additions in green. As well, you can see exactly which lines were changed. If you've knitted your R Markdown document, the html output will have changed too.
+If you have made changes to your Rmd file, you should see it listed here. Click on it to select it in this list and then click on **Diff**. This shows you the <u>diff</u>erence between the last committed state of the document and its current state that includes your changes. You can see exactly which lines were changed - deletions appear in red and additions appear in green. If you've knitted your R Markdown document, the html output will have changed too.
 
-If you're happy with these changes, we'll prepare the changes to be pushed to your remote repository. First, **stage** your changes by checking the appropriate box on the files you want to prepare (in this case, the .Rmd file and the .html file). Next, write a meaningful commit message (for instance, "Updated author name") in the **Commit message** box. Finally, click **Commit**. Note that every commit needs to have a commit message associated with it.
+If you're happy with these changes, we'll prepare the changes to be pushed to your remote repository. First, **stage** your changes by checking the checkboxes of the files you want to prepare (in this case, the .Rmd file and the .html file). Next, write a meaningful commit message (for instance, "Updated author name") in the **Commit message** box. Finally, click **Commit**. Note that every commit needs to have a commit message associated with it.
 
 ```{r update-author-name-commit, fig.fullwidth=TRUE, echo = FALSE}
 knitr::include_graphics("img/update-author-name-commit.png")
@@ -167,7 +160,9 @@ You don't have to commit after every change, this would get quite cumbersome. Yo
 
 Now that you have made an update and committed this change, it's time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean the course instructor (your repos in this course are private to you and me, only). In later weeks, you will be doing labs in groups and will want your groupmates to see your changes as well.
 
-In order to push your changes to GitHub, you must have **staged** your **commit** to be pushed - this is what you did in the previous section. Then click on **Push**. This will prompt a dialogue box where you first need to enter your GitHub username, and then your GitHub password. Don't worry, we will soon teach you how to save your password so you don't have to enter it every time. But for now you'll have to manually enter your username and password each time you push, in order to gain some experience with the process.
+In order to push your changes to GitHub, you must have **staged** your **commit** to be pushed - this is what you did in the previous section. Then click on **Push** (in the upper right hand corner, with the green Up arrow). This will prompt a dialogue box where you first need to enter your GitHub username, and then your GitHub password. Don't worry, we will soon teach you how to save your password so you don't have to enter it every time. But for now you'll have to manually enter your username and password each time you push, in order to gain some experience with the process.
+
+Once you've pushed, you can close the dialog box and the Git window, bringing you back to the main RStudio page (with the four panes).
 
 # The data
 
