@@ -391,6 +391,16 @@ But you should always label your plots!]
 
 ---
 
+## Facet summary
+
+- `facet_grid()`:
+    - 2d grid
+    - `rows ~ cols`
+    - use `.` for no split
+- `facet_wrap()`: 1d ribbon wrapped into 2d
+
+---
+
 ```{r out.width="90%", warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
@@ -410,16 +420,6 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   facet_wrap(~ eye_color)
 ```
-
----
-
-## Facet summary
-
-- `facet_grid()`:
-    - 2d grid
-    - `rows ~ cols`
-    - use `.` for no split
-- `facet_wrap()`: 1d ribbon wrapped into 2d
 
 ---
 

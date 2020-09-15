@@ -3,7 +3,7 @@
   <head>
     <title>Data and visualization   📉</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="author" content="" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -13,7 +13,6 @@
 class: center, middle, inverse, title-slide
 
 # Data and visualization <br> 📉
-### 
 
 ---
 
@@ -96,7 +95,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Warning: Removed 28 rows containing missing values (geom_point).
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -135,7 +134,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
        x = "Height (cm)", y = "Weight (kg)")
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -263,7 +262,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Warning: Removed 28 rows containing missing values (geom_point).
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -291,7 +290,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 *      x = "Height (cm)", y = "Weight (kg)")
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -307,7 +306,7 @@ Who is the not so tall but really chubby character?
 
 .small[
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -357,7 +356,7 @@ ggplot(data = starwars,
   geom_point()
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Mass vs. height + gender
@@ -370,7 +369,7 @@ ggplot(data = starwars,
   geom_point()
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -384,13 +383,13 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
 * geom_point(size = 2)
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Aesthetics summary
 
-- Continuous variable are measured on a continuous scale
+- Continuous variables are measured on a continuous scale
 - Discrete variables are measured (or often counted) on a discrete scale
 
 aesthetics | discrete                 | continuous                              
@@ -425,7 +424,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 *      subtitle = "Faceted by gender")
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -445,6 +444,16 @@ But you should always label your plots!]
 
 ---
 
+## Facet summary
+
+- `facet_grid()`:
+    - 2d grid
+    - `rows ~ cols`
+    - use `.` for no split
+- `facet_wrap()`: 1d ribbon wrapped into 2d
+
+---
+
 
 ```r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
@@ -452,7 +461,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_grid(gender ~ .)
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-21-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-21-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -462,7 +471,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_grid(. ~ gender)
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -472,17 +481,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_wrap(~ eye_color)
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-23-1.png" width="95%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Facet summary
-
-- `facet_grid()`:
-    - 2d grid
-    - `rows ~ cols`
-    - use `.` for no split
-- `facet_wrap()`: 1d ribbon wrapped into 2d
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-23-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -545,16 +544,13 @@ How similar do the relationships between `x` and `y` in the thirteen datasets lo
 How similar are they based on summary stats?
 ]
 
-&lt;img src="u1_d03-data-viz_files/figure-html/datasaurus-plot-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/datasaurus-plot-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
+
 ## Anscombe's quartet
 
 
-```r
-library(Tmisc)
-quartet
-```
 
 .pull-left[
 
@@ -651,7 +647,7 @@ ggplot(quartet, aes(x = x, y = y)) +
   facet_wrap(~ set, ncol = 4)
 ```
 
-&lt;img src="u1_d03-data-viz_files/figure-html/quartet-plot-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/quartet-plot-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -661,7 +657,7 @@ ggplot(quartet, aes(x = x, y = y)) +
 Do you see anything out of the ordinary?
 ]
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -671,7 +667,7 @@ Do you see anything out of the ordinary?
 How are people reporting lower vs. higher values of FB visits?
 ]
 
-&lt;img src="u1_d03-data-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
