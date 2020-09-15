@@ -41,16 +41,16 @@ class: middle
 
 ## Number of variables involved
 
--   Univariate data analysis - distribution of single variable
--   Bivariate data analysis - relationship between two variables
--   Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
+- Univariate data analysis - distribution of single variable
+- Bivariate data analysis - relationship between two variables
+- Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
 
 ---
 
 ## Types of variables
 
--   **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
--   If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
+- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
 
 ---
 
@@ -62,16 +62,12 @@ class: middle
 
 ## Describing shapes of numerical distributions
 
--   shape:
-
-    -   skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
-    -   modality: unimodal, bimodal, multimodal, uniform
-
--   center: mean (`mean`), median (`median`), mode (not always useful)
-
--   spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
-
--   unusal observations
+- shape:
+    - skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
+    - modality: unimodal, bimodal, multimodal, uniform
+- center: mean (`mean`), median (`median`), mode (not always useful)
+- spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
+- unusal observations
 
 ---
 
@@ -87,7 +83,7 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 ## Warning: Removed 6 rows containing non-finite values (stat_bin).
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-2-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -103,7 +99,7 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 ## Warning: Removed 6 rows containing non-finite values (stat_density).
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-3-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-3-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -121,7 +117,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-4-1.png" width="80%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -133,7 +129,7 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color)) +
   geom_bar()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -161,7 +157,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-7-1.png" width="70%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -175,7 +171,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-8-1.png" width="70%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ```r
   labs(y = "proportion")
@@ -195,9 +191,9 @@ ggplot(data = starwars,
 Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
 ]
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-9-1.png" width="50%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -205,9 +201,9 @@ Which bar plot is a more useful representation for visualizing the relationship 
 
 Time to actually play around with the Star Wars dataset!
 
--   Go to RStudio Cloud ([rstd.io/dsbox-cloud](http://rstd.io/dsbox-cloud)) and start `AE 03 - StarWars + Data visualization`.
--   Open the R Markdown document and complete the exercise (and if time allows, the stretch goal exercise).
--   Once done, place a green sticky on your laptop. If you have questions, place a pink sticky. ]
+- Go to RStudio Cloud ([rstd.io/dsbox-cloud](http://rstd.io/dsbox-cloud)) and start `AE 03 - StarWars + Data visualization`.
+- Open the R Markdown document and complete the exercise (and if time allows, the stretch goal exercise).
+- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky. ]
 
 ---
 
@@ -225,7 +221,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_boxplot()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-11-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-11-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -239,7 +235,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_point()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-12-1.png" width="60%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -251,7 +247,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_violin()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-13-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-13-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -265,7 +261,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_jitter()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-15-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-15-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -278,7 +274,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_beeswarm()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-16-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-16-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -291,11 +287,7 @@ ggplot(starwars, aes(x = height, y = gender, fill = gender, color = gender)) +
   geom_density_ridges(alpha = 0.5)
 ```
 
-```
-## Picking joint bandwidth of 3.93
-```
-
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-17-1.png" width="70%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -318,7 +310,7 @@ ggplot(starwars_without_jabba, aes(x = height, y = mass)) +
   geom_point()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-19-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-19-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -332,7 +324,7 @@ ggplot(starwars_without_jabba, aes(x = height, y = mass)) +
   geom_hex()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-20-1.png" width="75%" /&gt;
+&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-20-1.png" width="75%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
