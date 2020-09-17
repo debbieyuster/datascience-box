@@ -31,23 +31,9 @@ Additionally, National Geographic recently ran a data visualization communicatio
 
 ## Getting started
 
-Go to the course [GitHub organization](https://github.com/rcnj-ids-fa20) and locate your Lab 02 repo, which should be named `lab-02-plastic-waste-YOUR_GITHUB_USERNAME`. Grab the URL of the repo, and clone it in RStudio. Be sure that within RStudio, you are working in our course workspace, 'data-101-fall-2020', and not in 'Your Workspace'. Refer to [Lab 01](/labs/lab-01/lab-01-hello-r) if you would like to see step-by-step instructions for cloning a repo into an RStudio project.
+Go to the course [GitHub organization](https://github.com/rcnj-ids-fa20) and locate your Lab 02 repo, which should be named `lab-02-plastic-waste-YOUR_GITHUB_USERNAME`. Grab the URL of the repo, and clone it in RStudio. **Be sure that within RStudio, you are working in our course workspace, 'data-101-fall-2020', and not in 'Your Workspace'**. Refer to [Lab 01](/labs/lab-01/lab-01-hello-r) if you would like to see step-by-step instructions for cloning a repo into an RStudio project.
 
 Next, open the R Markdown document `lab-02-plastic-waste.Rmd` and Knit it. Make sure it compiles without errors. The output will be in the html file `.html` file with the same name.
-
-## Configure git
-
-```{marginfigure}
-Your email address should be the one tied to your GitHub account.
-```
-
-Before we can get started we need to do one more thing.  Specifically,  we need to configure your git so that RStudio can communicate with GitHub. This requires two pieces of information: your email address and your name.
-
-To do so, run the following in the Console:
-
-```{r eval=FALSE}
-usethis::use_git_config(user.name = "Your Name", user.email = "your_email@example.com")
-```
 
 ## Update the name and date
 
@@ -63,7 +49,7 @@ library(tidyverse)
 
 ## Data
 
-The dataset for this assignment can be found as a csv file in the `data` folder of your repository. You can read it in using the following:
+The dataset for this assignment can be found as a csv file in the `data` folder of your repository. You can read it in by running the following code in the Console:
 
 ```{r load-data, message=FALSE, eval=TRUE}
 plastic_waste <- read_csv("data/plastic-waste.csv")
@@ -84,7 +70,7 @@ The variable descriptions are as follows:
 
 # Warm up with your team
 
-You have 5 minutes to complete this section.
+You should be able to complete this section in 5 minutes or less.
 
 - Recall that RStudio is divided into four panes. Without looking, can you name them all and briefly describe their purpose?
 - Verify that the dataset has loaded into the Environment. How many observations are in the dataset? Clicking on the dataset in the Environment will allow you to inspect it more carefully. Alternatively, you can type `View(plastic_waste)` into the Console to do this. 
@@ -113,7 +99,7 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.2)
 ```
 
-One country stands out as an unusual observation at the top of the distribution. One way of identifying this country is to filter the data for countries where plastic waste per capita is greater than 3.5 kg/person.
+One country stands out as an unusual observation at the top of the distribution (meaning, the right side of the histogram). One way of identifying this country is to filter the data for countries where plastic waste per capita is greater than 3.5 kg/person.
 
 ```{r plastic_waste_per_cap-max, eval=TRUE}
 plastic_waste %>%
@@ -121,6 +107,10 @@ plastic_waste %>%
 ```
 
 Did you expect this result? You might consider doing some research on Trinidad and Tobago to see why plastic waste per capita is so high there, or whether this is a data error.
+
+```{marginfigure}
+**Note:** Be sure to always leave a blank line of whitespace in between chunks or statements in an R Markdown document. Otherwise, it will not render properly.
+```
 
 1. Plot, using histograms, the distribution of plastic waste per capita faceted by continent. What can you say about how the continents compare to each other in terms of their plastic waste per capita?
 
@@ -198,6 +188,10 @@ Remember that we use `geom_point()` to make scatterplots.
 Hint: The colors are from the viridis color palette. Take a look at the functions starting with `scale_color_viridis_*` in the [ggplot2 reference page](https://ggplot2.tidyverse.org/reference/scale_viridis.html)..
 ```
 
+```{marginfigure}
+Another hint: To make the background white instead of gray, add in the layer `theme_minimal()`
+```
+
 1. Recreate the following plot, and interpret what you see in the context of the data. Use the code below to filter out any countries with plastic waste per capita over 3 kg/per day. The code below names this filtered dataset as `plastic_waste_small`. Use the filtered dataset for the plot. (We'll learn more about the `filter` function in the coming weeks.)
 
 
@@ -210,23 +204,6 @@ plastic_waste_small <- plastic_waste %>%
 ```{r echo  = FALSE, fig.align = "center", eval = TRUE, out.width = "250%"}
 knitr::include_graphics("img/ex-08.png")
 ```
-
-
-<!-- # ```{r echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE} -->
-<!-- # plastic_waste %>%  -->
-<!-- #   mutate(coastal_pop_prop = coastal_pop / total_pop) %>% -->
-<!-- #   filter(plastic_waste_per_cap < 3) %>% -->
-<!-- #   ggplot(aes(x = coastal_pop_prop, y = plastic_waste_per_cap, color = continent)) +  -->
-<!-- #     geom_point() + -->
-<!-- #     geom_smooth(color = "black") + -->
-<!-- #     scale_color_viridis_d() + -->
-<!-- #     labs(x = "Coastal population proportion (Coastal / total population)",  -->
-<!-- #          y = "Plastic waste per capita ",  -->
-<!-- #          color = "Continent", -->
-<!-- #          title = "Plastic waste vs. coastal population proportion", -->
-<!-- #          subtitle = "by continent") + -->
-<!-- #     theme_minimal() -->
-<!-- # ``` -->
 
 `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` *Commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
