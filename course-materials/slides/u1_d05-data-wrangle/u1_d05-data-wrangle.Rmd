@@ -391,7 +391,7 @@ knitr::include_graphics("img/magrittr.jpg")
 
 ## How does a pipe work?
 
-- You can think about the following sequence of actions - find key, 
+- You can think about the following sequence of actions - find keys, 
 unlock car, start car, drive to work, park.
 
 --
@@ -704,7 +704,7 @@ operator    | definition                   || operator     | definition
 
 .your-turn[
 
-Time to actually play around with the Star Wars dataset!
+Time to actually play around with the Hotels dataset!
 
 - Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 1 - 4.
@@ -814,7 +814,7 @@ hotels %>%
 
 .your-turn[
 
-Time to actually play around with the Star Wars dataset!
+Time to actually play around with the Hotels dataset!
 
 - Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 5 and 6.
@@ -972,7 +972,7 @@ hotels %>%
 
 .your-turn[
 
-Time to actually play around with the Star Wars dataset!
+Time to actually play around with the Hotels dataset!
 
 - Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 7 and 8.
