@@ -3,7 +3,7 @@
   <head>
     <title>Tidy data and data wrangling   🔧</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="author" content="" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -13,7 +13,6 @@
 class: center, middle, inverse, title-slide
 
 # Tidy data and data wrangling <br> 🔧
-### 
 
 ---
 
@@ -320,7 +319,7 @@ select(.data = hotels, lead_time)
 - Start with the function (a verb): `select()`
 - First argument is `.data` (the data frame we're working with) = `hotels`
 - Second argument is variable we want to select: `lead_time`
-- The result is a data frame with 119,300 and 1 column: --dplyr functions always 
+- The result is a data frame with 119,300 rows and 1 column: `dplyr` functions always 
 expect a data frame and always yield a data frame.
 ]
 
@@ -593,7 +592,7 @@ Any guesses as to why the package is called magrittr?
 unlock car, start car, drive to work, park.
 
 --
-- Expressed as a set of nested functions in R pseudocode this would look like:
+- Expressed as a set of nested functions (in R pseudocode), this would look like:
 
 ```r
 park(drive(start_car(find("keys")), to = "work"))
@@ -1152,9 +1151,8 @@ operator    | definition                   || operator     | definition
 
 Time to actually play around with the Star Wars dataset!
 
-- Go to RStudio Cloud ([rstd.io/dsbox-cloud](http://rstd.io/dsbox-cloud)) and start `AE 04 - Hotels + Data wrangling`.
+- Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 1 - 4.
-- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
 ]
 
 ---
@@ -1420,9 +1418,8 @@ hotels %&gt;%
 
 Time to actually play around with the Star Wars dataset!
 
-- Go to RStudio Cloud ([rstd.io/dsbox-cloud](http://rstd.io/dsbox-cloud)) and start `AE 04 - Hotels + Data wrangling`.
+- Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 5 and 6.
-- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
 ]
 
 ---
@@ -1699,9 +1696,8 @@ hotels %&gt;%
 
 Time to actually play around with the Star Wars dataset!
 
-- Go to RStudio Cloud ([rstd.io/dsbox-cloud](http://rstd.io/dsbox-cloud)) and start `AE 04 - Hotels + Data wrangling`.
+- Go to our RStudio Cloud course workspace and start `AE 04 - Hotels + Data wrangling`.
 - Open the R Markdown document and complete Exercises 7 and 8.
-- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
