@@ -625,7 +625,7 @@ ggplot() +
 
 ---
 
-```{r echo=FALSE, fig.asp=0.8}
+```{r echo=FALSE, fig.asp=0.8, out.width="75%"}
 ggplot() +
   geom_polygon(world_map, 
                mapping = aes(x = long, y = lat, group = group), 
@@ -669,7 +669,7 @@ ggplot() +
 
 ---
 
-```{r echo=FALSE, fig.asp=0.8}
+```{r echo=FALSE, fig.asp=0.8, out.width="75%"}
 ggplot() +
   geom_polygon(world_map, mapping = aes(x = long, y = lat, group = group), fill = "lightgray") +
   geom_polygon(fisheries_map, mapping = aes(x = long, y = lat, group = group, fill = log(capture))) +
@@ -710,7 +710,7 @@ ggplot() +
 
 ---
 
-```{r echo=FALSE, fig.asp=0.8}
+```{r echo=FALSE, fig.asp=0.8, out.width="75%"}
 ggplot() +
   geom_polygon(world_map, mapping = aes(x = long, y = lat, group = group), fill = "lightgray") +
   geom_polygon(fisheries_map, mapping = aes(x = long, y = lat, group = group, fill = log(aquaculture+1))) +
@@ -728,7 +728,7 @@ ggplot() +
 
 ---
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.asp=0.8, out.width="75%"}
 fisheries_map <- fisheries_map %>%
   mutate(
     aquaculture_perc = aquaculture / total
