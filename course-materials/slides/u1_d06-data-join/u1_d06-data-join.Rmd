@@ -182,8 +182,8 @@ continents
 something_join(x, y)
 ```
 
-- `inner_join()`: all rows from x where there are matching values in y, return 
-all combination of multiple matches in the case of multiple matches
+- `inner_join()`: all rows from x where there are matching values in y, returns 
+all combinations of multiple matches in the case of multiple matches
 - `left_join()`: all rows from x
 - `right_join()`: all rows from y
 - `full_join()`: all rows from both x and y
