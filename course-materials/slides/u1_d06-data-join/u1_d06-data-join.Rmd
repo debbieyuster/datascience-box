@@ -401,17 +401,8 @@ fisheries %>%
 ---
 
 .your-turn[
-- [RStudio Cloud](http://rstd.io/dsbox-cloud) > `AE 05 - Fisheries + Data joins` > open `fisheries.Rmd` and knit.
-- Knit the document and work on the Exercise 1.
-- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
-]
-
----
-
-.your-turn[
-- [RStudio Cloud](http://rstd.io/dsbox-cloud) > `AE 05 - Fisheries + Data joins` > open `fisheries.Rmd` and knit.
-- Knit the document and work on the Exercises 2 - 4.
-- Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
+- RStudio Cloud > `AE 05 - Fisheries + Data joins` > open `fisheries.Rmd`.
+- Knit the document and work on Exercises 1 - 4.
 ]
 
 ---
