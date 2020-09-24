@@ -19,8 +19,6 @@ knitr::opts_chunk$set(eval = FALSE)
 
 `r emo::ji("white_check_mark")` Identify something everyone on the team has in common that's not necessarily in common with everyone else in the class. 
 
-- Have **one person** from the team clone the repo and start a new RStudio project. This person will type the team's responses as you discuss the sections of the agreement. Share your screen, if possible, so the rest of the team can see the updates. No one else in the team should type at this point but should be contributing to the discussion.
-
 # Lab 03
 
 In January 2017, Buzzfeed published an article titled ["These Nobel Prize Winners Show Why Immigration Is So Important For American Science"](https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science). In the article they explore where many Nobel laureates in the sciences were born and where they lived when they won their prize.
@@ -43,7 +41,7 @@ A repository has already been created for you and your teammates. Everyone in yo
 
 - You should see a repo named lab-03-nobel-[team_number]. Go to that repository.
 
-- Each person on the team should clone the repository and open a new project in RStudio. **Do not make any changes to the .Rmd file until the instructions tell you do to so.**
+- Each person on the team should clone the repository and open a new project in RStudio (in our course workspace data-101-fall-2020!). **Do not make any changes to the .Rmd file until the instructions tell you do to so.**
   
 ## Workflow: Using git and GitHub as a team
   
@@ -182,17 +180,17 @@ nobel_living_science <- nobel_living %>%
 3. Create a faceted bar plot visualizing the relationship between the category of prize and whether the laureate was in the US when they won the nobel prize. Note: Your visualization should be faceted by category. For each facet you should have two bars, one for winners in the US and one for Other. Flip the coordinates so the bars are horizontal, not vertical. Interpret your visualization, and say a few words about whether the Buzzfeed headline is supported by the data.
 
 <div class = "commit">
-  `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` <b>Team Member 2</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
+`r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` <b>Team Member 2</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
   
-  <b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the responses to exercise 3. 
+<b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the responses to exercise 3. 
 
 <b>Team Member 3</b>: It's your turn! Type the team's response to exercises 4 - 5.
 </div>
   
   
-  ### "But of those US-based Nobel laureates, many were born in other countries..."
+### "But of those US-based Nobel laureates, many were born in other countries..."
   
-  ```{marginfigure}
+```{marginfigure}
 **Hint:** You should be able to borrow from code you used earlier to create the `country_us` variable.
 ```
 
@@ -238,7 +236,7 @@ All other team members can click to pull the finalized document.
 
 ## Submission 
 
-<b>Team Member 3</b>: Upload the team's PDF to Gradescope. Be sure to include every team member's name in the Gradescope submission. Associate the "GitHub" graded section with the first page of your PDF, and mark where each answer is  to the exercises. If any answer spans multiple pages, then mark all pages.
+<b>Team Member 3</b>: Upload the team's PDF to Gradescope. Be sure to include every team member's name in the Gradescope submission. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. If any answer spans multiple pages, then mark all pages. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not particiapted sufficiently may receive a lower grade than the rest of the group.
 
 There should only be **<u>one</u>** submission per team on Gradescope. 
 
