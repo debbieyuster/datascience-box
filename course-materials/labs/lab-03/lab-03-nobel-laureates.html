@@ -14,19 +14,6 @@
 
 <title>Lab 03 - Nobel laureates</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
-  }
-});
-</script>
 <style type="text/css">
 @charset "UTF-8";
 
@@ -213,22 +200,39 @@ color: #222;
 }
 .numeral, .sidenote-number { font-family: "Roboto Condensed"; }
 </style>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -248,7 +252,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -461,36 +465,56 @@ counter-reset: subitem;
 
 
 <h1 class="title toc-ignore">Lab 03 - Nobel laureates</h1>
+<h3 class="subtitle">due Sunday, Sep 27 at 11:59p</h3>
 
 
 
-<p>In January 2017, Buzzfeed published an article on why Nobel laureates show immigration is so important for American science. You can read the article <a href="https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science">here</a>. In the article they show that while most living Nobel laureates in the sciences are based in the US, many of them were born in other countries. This is one reason why scientific leaders say that immigration is vital for progress. In this lab we will work with the data from this article to recreate some of their visualizations as well as explore new questions.</p>
+<div id="warm-up-meet-your-team" class="section level1">
+<h1>Warm up: Meet your team!</h1>
+<p>✅ Come up with a team name. I encourage you to be creative!</p>
+<p>✅ Identify something everyone on the team has in common that’s not necessarily in common with everyone else in the class.</p>
+<ul>
+<li>Have <strong>one person</strong> from the team clone the repo and start a new RStudio project. This person will type the team’s responses as you discuss the sections of the agreement. Share your screen, if possible, so the rest of the team can see the updates. No one else in the team should type at this point but should be contributing to the discussion.</li>
+</ul>
+</div>
+<div id="lab-03" class="section level1">
+<h1>Lab 03</h1>
+<p>In January 2017, Buzzfeed published an article titled <a href="https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science">“These Nobel Prize Winners Show Why Immigration Is So Important For American Science”</a>. In the article they explore where many Nobel laureates in the sciences were born and where they lived when they won their prize.</p>
+<p>In this lab we will work with the data from this article to recreate some of their visualizations as well as explore new questions.</p>
 <p>The learning goals of this lab are:</p>
 <ul>
 <li>Manipulate and transform data to prepare it for visualization.</li>
 <li>Recreate visualizations.</li>
-<li>Summarise data.</li>
-<li>Get more practice working as a team.</li>
+<li>Summarize data.</li>
+<li>Practice working on a team.</li>
 </ul>
-<div id="workflow" class="section level2">
-<h2>Workflow</h2>
-<p>This is the first week you’re working in teams. You have a team repository that each member of the team has access to. You can all push to this repository, but <strong>for this week only</strong> we will keep things simple and ask that the <strong>team lead for the week is the only one who pushes</strong> while others work on together with them.</p>
-<p>Starting next week we’ll show you how you can all collectively work in a repo, the (mini) chaos that might result in (called a merge conflict), and how to resolve it.</p>
+<div id="clone-assignment-repo-start-new-project" class="section level2">
+<h2>Clone assignment repo + start new project</h2>
+<p>A repository has already been created for you and your teammates. Everyone in your team has access to the same repo.</p>
+<ul>
+<li><p>Go to our <a href="https://www.github.com/rcnj-ids-fa20">course organization</a> on GitHub.</p></li>
+<li><p>You should see a repo named lab-03-nobel-[team_number]. Go to that repository.</p></li>
+<li><p>Each person on the team should clone the repository and open a new project in RStudio. <strong>Do not make any changes to the .Rmd file until the instructions tell you do to so.</strong></p></li>
+</ul>
 </div>
-<div id="getting-started" class="section level2">
-<h2>Getting started</h2>
-<p>Go to the course GitHub organization and locate your Lab 03 repo, which should be named <code>lab-03-nobel-winners-YOUR_TEAMNAME</code>. Grab the URL of the repo, and clone it in RStudio. Refer to Lab 01 if you would like to see step-by-step instructions for cloning a repo into an RStudio project.</p>
-<p>First, open the R Markdown document <code>lab-03-nobel-winners.Rmd</code> and Knit it. Make sure it compiles without errors. The output will be in the file markdown <code>.md</code> file with the same name.</p>
-<div id="packages" class="section level3">
-<h3>Packages</h3>
+<div id="workflow-using-git-and-github-as-a-team" class="section level2">
+<h2>Workflow: Using git and GitHub as a team</h2>
+<p><strong>Assign each person on your team a number 1 through 4. For teams of three, Member 1 can take on the role of Member 4.</strong></p>
+<p>The following exercises must be done in order. <strong>Only one person should type in the .Rmd file and push updates at a time.</strong> When it is not your turn to type, you should still share ideas and contribute to the team’s discussion.</p>
+</div>
+<div id="update-yaml" class="section level2">
+<h2>Update YAML</h2>
+<p><strong>Team Member 1: Change the author to your team name and include each team member’s name in the <code>author</code> field of the YAML in the following format: <code>Team Name: Member 1, Member 2, Member 3, Member 4</code>.</strong></p>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
 <p>We’ll use the <strong>tidyverse</strong> package for this analysis. Run the following code in the Console to load this package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
-</div>
-<div id="the-data" class="section level2">
-<h2>The data</h2>
+<div id="data" class="section level2">
+<h2>Data</h2>
 <p>The dataset for this assignment can be found as a csv file in the <code>data</code> folder of your repository. You can read it in using the following.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>nobel &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/nobel.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>nobel &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/nobel.csv&quot;</span>)</span></code></pre></div>
 <p>The variable descriptions are as follows:</p>
 <ul>
 <li><code>id</code>: ID number</li>
@@ -514,7 +538,7 @@ counter-reset: subitem;
 <li><code>share</code>: Number of other winners award is shared with</li>
 <li><code>motivation</code>: Motivation for recognition</li>
 </ul>
-<p>In a few cases the name of the city/country changed after laureate was given (e.g. in 1975 Bosnia and Herzegovina was part of the Socialist Federative Republic of Yugoslavia). In these cases the variables below reflect a different name than their counterparts without the suffix <code>_original</code>.</p>
+<p>In a few cases the name of the city/country changed after prize was given (e.g. in 1975 Bosnia and Herzegovina was part of the Socialist Federal Republic of Yugoslavia). In these cases the variables below reflect a different name than their counterparts without the suffix <code>_original</code>.</p>
 <ul>
 <li><code>born_country_original</code>: Original country where laureate was born</li>
 <li><code>born_city_original</code>: Original city where laureate was born</li>
@@ -524,10 +548,20 @@ counter-reset: subitem;
 <li><code>country_original</code>: Original country where laureate lived at the time of winning the award</li>
 </ul>
 </div>
-<div id="exercises" class="section level2">
-<h2>Exercises</h2>
-<div id="get-to-know-your-data" class="section level3">
-<h3>Get to know your data</h3>
+</div>
+<div id="exercises" class="section level1">
+<h1>Exercises</h1>
+<p>Before the first exercise, let’s learn about <strong>inline code</strong>. An inline code chunk in an R Markdown document starts with a single backtick followed by a lower case r (<code>`r</code>), and ends with a single backtick <code>`</code>. Between the backticks should be R code, which will get executed when the document is knit.</p>
+<p>For example, if you type:</p>
+<p>The square root of 81 is <code>`r sqrt(81)`</code></p>
+<p>in your R Markdown document and knit, you will get the following output:</p>
+<p>The square root of 81 is 9</p>
+<p>This can be used for reporting values in your R Markdown report. Rather than typing a number by hand, try to have R generate it using inline code. You’ll try this in the first exercise:</p>
+<div id="get-to-know-your-data" class="section level2">
+<h2>Get to know your data</h2>
+<div class="commit">
+<p><b>Team Member 1</b>: Type the team’s responses to exercises 1 and 2.</p>
+</div>
 <ol style="list-style-type: decimal">
 <li>How many observations and how many variables are in the dataset? Use inline code to answer this question.</li>
 </ol>
@@ -541,53 +575,75 @@ counter-reset: subitem;
 <li>laureates who are still alive (their <code>died_date</code> is <code>NA</code>)</li>
 </ul>
 <p>Confirm that once you have filtered for these characteristics you are left with a data frame with 228 observations.</p>
-<p>✅ ⬆️ <em>Commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</em></p>
+<div class="commit">
+<p>✅ ⬆️ <b>Team Member 1</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</p>
+</div>
+<p><label for="tufte-mn-1" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-1" class="margin-toggle"><span class="marginnote"><span style="display: block;">You can <em>pull</em> by clicking the blue down arrow in the Git pane in RStudio. Once you click to pull, you will see the updates your team member pushed to GitHub in your RStudio project.</span></span></p>
+<div class="commit">
+<p></b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the responses to exercises 1 and 2.</p>
+<p><b>Team Member 2</b>: It’s your turn! Type the team’s response to exercise 3.</p>
 </div>
 <div id="most-living-nobel-laureates-were-based-in-the-us-when-they-won-their-prizes" class="section level3">
-<h3>Most living Nobel laureates were based in the US when they won their prizes</h3>
+<h3>“Most living Nobel laureates were based in the US when they won their prizes”</h3>
 <p>… says the Buzzfeed article. Let’s see if that’s true.</p>
-<p>First, we’ll create a new variable to identify whether the laureate was in the US when they won their prize. We’ll use the <code>mutate()</code> function for this. The following pipeline mutates the <code>nobel_living</code> data frame by adding a new variable called <code>country_us</code>. We use an if statement to create this variable. The first argument in the <code>if_else()</code> function we’re using to write this if statement is the condition we’re testing for. If <code>country</code> is equal to <code>&quot;USA&quot;</code>, we set <code>country_us</code> to <code>&quot;USA&quot;</code>. If not, we set the <code>country_us</code> to <code>&quot;Other&quot;</code>.</p>
-<p><label for="tufte-mn-1" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-1" class="margin-toggle"><span class="marginnote"><span style="display: block;">Note that we can achieve the same result using the <code>fct_other()</code> function we’ve seen before (i.e. with <code>country_us = fct_other(country, “USA”)</code>). We decided to use the <code>if_else()</code> here to show you one example of an if statement in R.</span></span></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>nobel_living &lt;-<span class="st"> </span>nobel_living <span class="op">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="dt">country_us =</span> <span class="kw">if_else</span>(country <span class="op">==</span><span class="st"> &quot;USA&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Other&quot;</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  )</span></code></pre></div>
+<p>First, we’ll create a new variable to identify whether the laureate was in the US when they won their prize. We’ll use the <code>mutate()</code> function for this. The following pipeline mutates the <code>nobel_living</code> data frame by adding a new variable called <code>country_us</code>. We use an if/else statement to create this variable. The first argument in the <code>if_else()</code> function is the condition we’re testing for. If <code>country</code> is equal to <code>&quot;USA&quot;</code>, we set <code>country_us</code> to <code>&quot;USA&quot;</code>. If not, we set the <code>country_us</code> to <code>&quot;Other&quot;</code>.</p>
+<p><label for="tufte-mn-2" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-2" class="margin-toggle"><span class="marginnote"><span style="display: block;">Note that we can achieve the same result using the <code>fct_other()</code> function (i.e. with <code>country_us = fct_other(country, “USA”)</code>).</span></span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>nobel_living &lt;-<span class="st"> </span>nobel_living <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">country_us =</span> <span class="kw">if_else</span>(country <span class="op">==</span><span class="st"> &quot;USA&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Other&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  )</span></code></pre></div>
 <p>Next, we will limit our analysis to only the following categories: Physics, Medicine, Chemistry, and Economics.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>nobel_living_science &lt;-<span class="st"> </span>nobel_living <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Physics&quot;</span>, <span class="st">&quot;Medicine&quot;</span>, <span class="st">&quot;Chemistry&quot;</span>, <span class="st">&quot;Economics&quot;</span>))</span></code></pre></div>
-<p>For the next exercise work with the <code>nobel_living_science</code> data frame you created above. This means you’ll need to define this data frame in your R Markdown document, even though the next exercise doesn’t explicitly ask you to do so.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>nobel_living_science &lt;-<span class="st"> </span>nobel_living <span class="op">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">filter</span>(category <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Physics&quot;</span>, <span class="st">&quot;Medicine&quot;</span>, <span class="st">&quot;Chemistry&quot;</span>, <span class="st">&quot;Economics&quot;</span>))</span></code></pre></div>
+<p><strong>You will work with the <code>nobel_living_science</code> data frame you created above for the remainder of the lab.</strong> This means you’ll need to define this data frame in your R Markdown document.</p>
+<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;"><strong>Hint:</strong> You can change the orientation of the bars using the <code>coord_flip()</code> function in ggplot2. Click <a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">here</a> to read more about the function.</span></span></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a faceted bar plot visualizing the relationship between the category of prize and whether the laureate was in the US when they won the nobel prize. Note: Your visualization should be faceted by category. For each facet you should have two bars, one for winners in the US and one for Other. Flip the coordinates so the bars are horizontal, not vertical. Interpret your visualization, and say a few words about whether the Buzzfeed headline is supported by the data.</li>
 </ol>
-<p>✅ ⬆️ <em>Commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</em></p>
+<div class="commit">
+<p>✅ ⬆️ <b>Team Member 2</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*</p>
+<p><b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the responses to exercise 3.</p>
+<p><b>Team Member 3</b>: It’s your turn! Type the team’s response to exercises 4 - 5.</p>
 </div>
-<div id="but-of-those-us-based-nobel-laureates-many-were-born-in-other-countries" class="section level3">
-<h3>But of those US-based Nobel laureates, many were born in other countries</h3>
-<p><label for="tufte-mn-2" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-2" class="margin-toggle"><span class="marginnote"><span style="display: block;"><strong>Hint:</strong> You should be able to <del>cheat</del> borrow from code you used earlier to create the <code>country_us</code> variable.</span></span></p>
+<p>### “But of those US-based Nobel laureates, many were born in other countries…”</p>
+<p><label for="tufte-mn-4" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-4" class="margin-toggle"><span class="marginnote"><span style="display: block;"><strong>Hint:</strong> You should be able to borrow from code you used earlier to create the <code>country_us</code> variable.</span></span></p>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Create a new variable called <code>born_country_us</code> that has the value <code>&quot;USA&quot;</code> if the laureate is born in the US, and <code>&quot;Other&quot;</code> otherwise.</p></li>
+<li><p>Create a new variable called <code>born_country_us</code> that has the value <code>&quot;USA&quot;</code> if the laureate is born in the US, and <code>&quot;Other&quot;</code> otherwise. Be sure to save the variable to the <code>nobel_living_science</code> data frame.</p></li>
 <li><p>Add a second variable to your visualization from Exercise 3 based on whether the laureate was born in the US or not. Your final visualization should contain a facet for each category, within each facet a bar for whether they won the award in the US or not, and within each bar whether they were born in the US or not. Based on your visualization, do the data appear to support Buzzfeed’s claim? Explain your reasoning in 1-2 sentences.</p></li>
 </ol>
-<p>✅ ⬆️ <em>Commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</em></p>
+<div class="commit">
+<p>✅ ⬆️ <b>Team Member 3</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</p>
+<p><b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the responses to exercises 4 and 5.</p>
+<p><b>Team Member 4</b>: It’s your turn! Type the team’s response to exercise 6.</p>
+</div>
 </div>
 <div id="heres-where-those-immigrant-nobelists-were-born" class="section level3">
 <h3>Here’s where those immigrant Nobelists were born</h3>
-<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;">Note that your bar plot won’t exactly match the one from the Buzzfeed article. This is likely because the data has been updated since the article was published.</span></span></p>
+<p><label for="tufte-mn-5" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-5" class="margin-toggle"><span class="marginnote"><span style="display: block;">Note that your bar plot won’t exactly match the one from the Buzzfeed article. This is likely because the data has been updated since the article was published.</span></span></p>
 <ol start="6" style="list-style-type: decimal">
-<li>In a single pipeline, filter for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the <code>count()</code>) function for their birth country, <code>born_country</code>, and arrange the resulting data frame in descending order of number of observations for each country.</li>
+<li>In a single pipeline, filter for laureates who were living in the US when they won their prize, but were born outside of the US, then create a frequency table (with the <code>count</code> function) for their birth country (<code>born_country</code>), and arrange the resulting data frame in descending order of number of observations for each country.</li>
 </ol>
-<p>✅ ⬆️ <em>Commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</em></p>
+<div class="commit">
+<p>✅ ⬆️ <b>Team Member 4</b>: Knit, commit and push your changes to GitHub with an appropriate commit message again. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</p>
+<p><b>All other team members</b>: <b>Pull</b> to get the updated documents from GitHub. Click on the .Rmd file, and you should see the team’s completed lab! </b></p>
 </div>
 </div>
 <div id="wrapping-up" class="section level2">
 <h2>Wrapping up</h2>
-<p>Go back through your write up to make sure you’re following coding style guidelines we discussed in class. Make any edits as needed.</p>
+<p>Go back through your write up to make sure you followed the coding style guidelines we started discussing.</p>
 <p>Also, make sure all of your R chunks are properly labeled, and your figures are reasonably sized.</p>
-<p>Once the team leader for the week pushes their final changes, others should also clone the team repo (or if you’ve already done so, <em>pull</em> on the Git pane) and knit the R Markdown document to confirm that they can reproduce the report.</p>
+<p><b>Team Member 2:</b> Make any edits as needed. Then knit, commit, and push the updated documents to GitHub if you made any changes.</p>
+<p>All other team members can click to pull the finalized document.</p>
+</div>
+<div id="submission" class="section level2">
+<h2>Submission</h2>
+<p><b>Team Member 3</b>: Upload the team’s PDF to Gradescope. Be sure to include every team member’s name in the Gradescope submission. Associate the “GitHub” graded section with the first page of your PDF, and mark where each answer is to the exercises. If any answer spans multiple pages, then mark all pages.</p>
+<p>There should only be <strong><u>one</u></strong> submission per team on Gradescope.</p>
 </div>
 <div id="interested-in-how-buzzfeed-made-their-visualizations" class="section level2">
 <h2>Interested in how Buzzfeed made their visualizations?</h2>
-<p>The plots in the Buzzfeed article are called waffle plots. You can find the code used for making these plots in Buzzfeed’s GitHub repo (yes, they have one!) <a href="https://buzzfeednews.github.io/2017-01-immigration-and-science/">here</a>. You’re not expected to recreate them as part of your assignment, but you’re welcomed to do so for fun!</p>
+<p>The plots in the Buzzfeed article are called waffle plots. You can find the code used for making these plots in Buzzfeed’s GitHub repo (yes, they have one!) <a href="https://buzzfeednews.github.io/2017-01-immigration-and-science/">here</a>. You’re not expected to recreate them as part of your assignment, but you’re welcome to do so for fun!</p>
+</div>
 </div>
 
 
