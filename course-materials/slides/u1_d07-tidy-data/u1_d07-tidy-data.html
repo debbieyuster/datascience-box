@@ -3,20 +3,9 @@
   <head>
     <title>Data tidying and reshaping   🧹</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="author" content="" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
-    <link href="libs/panelset/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset/panelset.js"></script>
-    <script src="libs/clipboard/clipboard.min.js"></script>
-    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
-    <script src="libs/shareon/shareon.min.js"></script>
-    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
@@ -24,7 +13,6 @@
 class: center, middle, inverse, title-slide
 
 # Data tidying and reshaping <br> 🧹
-### 
 
 ---
 
@@ -101,7 +89,7 @@ staff
 
 In order to recreate this visualization we need to first reshape the data to have 
 one variable for faculty type and one variable for year. In other words, 
-we will convert the data from the long format to wide format. 
+we will convert the data from a wide format to long format. 
 
 But before we do so... 
 
@@ -262,7 +250,7 @@ What is the difference between these two plots?
 
 ---
 
-## Make year numeric again!
+## Make year numeric!
 
 .small[
 
@@ -741,7 +729,6 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 ## Fix labels (plot)
 
 &lt;img src="u1_d07-tidy-data_files/figure-html/unnamed-chunk-39-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
