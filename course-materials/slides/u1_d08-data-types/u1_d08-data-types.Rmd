@@ -473,7 +473,7 @@ class(x)
 
 ## More on factors
 
-We can think of factors like character (level labels) and an integer (level numbers) glued together
+We can think of factors like characters (level labels) and an integer (level numbers) glued together
 
 ```{r}
 glimpse(x)
@@ -495,7 +495,7 @@ class(y)
 
 ## More on dates
 
-We can think of factors like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
+We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
 
 ```{r}
 as.integer(y)
