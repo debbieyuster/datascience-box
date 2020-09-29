@@ -294,7 +294,7 @@ Let's give formal names to what we've seen so far:
 .your-turn[
 - [RStudio Cloud] > `AE 06 - Hotels + Data types` > open `type-coercion.Rmd` and knit.
 - What is the type of the given vectors? First, guess. Then, try it out in R. 
-If your guess was correct, great! If not, discuss why they have that type.
+If your guess was correct, great! If not, figure out why they have that type.
 ]
 ]
 
