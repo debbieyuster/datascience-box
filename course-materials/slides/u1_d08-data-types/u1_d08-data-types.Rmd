@@ -437,7 +437,7 @@ We talked about *types* so far, next we'll introduce the concept of *classes*
 
 - Vectors are like Lego building blocks
 - We stick them together to build more complicated constructs, e.g. *representations of data*
-- The **class** attribute relates to the S3 class of an object which determines its behaviour
+- The **class** attribute relates to the S3 class of an object which determines its behavior
   - You don't need to worry about what S3 classes really mean, but you can read more about it [here](https://adv-r.hadley.nz/s3.html#s3-classes) if you're curious
 - Examples: factors, dates, and data frames
   
@@ -501,7 +501,7 @@ as.integer(y) / 365 # roughly 50 yrs
 
 ## Data frames
 
-We can think of data frames like like vectors of equal length glued together
+We can think of data frames like vectors of equal length glued together
 
 ```{r}
 df <- data.frame(x = 1:2, y = 3:4)
@@ -523,7 +523,7 @@ class(df)
 
 ## Lists
 
-Lists are a generic vector container vectors of any type can go in them
+Lists are a generic vector container; Vectors of any type can go in them
 
 ```{r}
 l <- list(
@@ -603,7 +603,7 @@ knitr::include_graphics("img/forcats-part-of-tidyverse.png")
 
 .small[
 .your-turn[
-- [RStudio Cloud](http://rstd.io/dsbox-cloud) > `AE 06 - Hotels + Data types` > `hotels-forcats.Rmd` > knit
+- RStudio Cloud > `AE 06 - Hotels + Data types` > `hotels-forcats.Rmd` > knit
 - Recreate the following. The x-axis first, then, as a stretch goal, the y-axis.
 ]
 ]
@@ -648,7 +648,7 @@ knitr::include_graphics("img/lubridate-not-part-of-tidyverse.png")
 ]
 .pull-right[
 - **lubridate** is the tidyverse-friendly package that makes dealing with dates a little easier
-- It's not one of the *core* tidyverse packages, hence it's installed with `install.packages("tidyverse)` but it's not loaded with it, and needs to be explicitly loaded with `library(lubridate)`
+- It's not one of the *core* tidyverse packages, hence it's installed with `install.packages("tidyverse")` but it's not loaded with it, and needs to be explicitly loaded with `library(lubridate)`
 ]
 
 ---
@@ -656,13 +656,13 @@ knitr::include_graphics("img/lubridate-not-part-of-tidyverse.png")
 class: middle
 
 .hand-blue[
-we're just going to scratch the surface of working with dates in R here...
+We're just going to scratch the surface of working with dates in R here...
 ]
 
 ---
 
 .question[
-Calculate and visualise the number of bookings on any given arrival date.
+Calculate and visualize the number of bookings on any given arrival date.
 ]
 
 ```{r}
@@ -700,7 +700,7 @@ hotels %>%
 
 ---
 
-## Step 3. Visualise number of bookings per date.
+## Step 3. Visualize number of bookings per date.
 
 .midi[
 ```{r out.width="70%"}
