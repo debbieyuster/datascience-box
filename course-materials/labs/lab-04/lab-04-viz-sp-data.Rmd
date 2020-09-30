@@ -20,6 +20,89 @@ options(
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
+# Introduction 
+
+Before we get started on today's lab, we will look at something that may happen as you collaborate with your lab team (or any other team!) in GitHub.
+
+# Merge Conflicts (uh oh)
+
+```{marginfigure}
+(Merge conflict images from Maria Tackett.)
+```
+
+```{r fig.margin=TRUE, fig.cap = "Changes to different lines: No merge conflict", eval=TRUE, echo=FALSE}
+include_graphics("./img/merge-no-conflict.png")
+```
+
+## Merge conflicts
+
+- When two collaborators make changes to a file and push the file to their repo, git merges these two files.
+- If these two files have conflicting content on the same line, git will produce a **merge conflict**.
+
+```{r fig.margin=TRUE, fig.cap = "Changes to same lines: Merge conflict", eval = TRUE, echo=FALSE}
+include_graphics("img/merge-conflict.png")
+```
+
+
+Merge conflicts need to be resolved manually. This is what you will see in the file with the merge conflict:
+
+```{r fig.margin=FALSE, eval=TRUE, echo=FALSE}
+include_graphics("img/merge-conflict-identifiers.png")
+```
+
+To resolve the merge conflict, decide if you want to keep only your text, the 
+text on GitHub, or incorporate changes from both texts. Delete the conflict 
+markers `<<<<<<<`, `=======`, `>>>>>>>` and make the changes you want in the 
+final merge.
+
+## Let's cause a merge conflict!
+
+**Assign numbers 1, 2, 3, and 4 to each of your team members** (if there are only 3 team 
+members, just number 1 through 3). Go through the following steps in detail, 
+which simulate a merge conflict. Completing this exercise will be part of the 
+lab grade.
+
+**Everyone** clone the group's **lab-04-viz-sp-data** assignment repo (from GitHub) in RStudio (within our course workspace) and open the file **merge-conflict.Rmd**.
+
+`r emo::ji("stop_sign")` Nobody should move on until all group members have completed this step.
+
+**Member 4** will be in charge of looking at the group’s repo on GitHub.com to ensure that the other 
+members’ files are pushed to GitHub after every step.
+
+**Member 1:** Change the team name to your team name. Knit, commit, and push.
+
+`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+
+**Member 2:** Change the team name to something different (i.e., not your
+team name). Knit, commit, and push. 
+
+You should get an error.
+
+**Pull** and review the document with the merge conflict. Read the error to your teammates. You can also show them the error by sharing your screen. A merge conflict occurred because you edited the same part of the 
+document as Member 1. Resolve the conflict with whichever name you want to keep,
+then knit, commit and push again.
+
+`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+
+**Member 3:** Write some narrative in the space provided. You should get an error.
+
+This time, no merge conflicts should occur, since you edited a different part of
+the document from Members 1 and 2. Read the error to your teammates. You can also show them the error by sharing your screen. 
+
+Click to pull.  Then, knit, commit, and push.
+
+`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+
+**All members:** Pull, and observe the changes in your document.
+
+### Tips for collaborating via GitHub
+
+- Always pull first before you start working.
+- Commit, and push, often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
+- If you find yourself in a situation that is difficult to resolve, ask questions asap, don't let it linger and get bigger.
+
+# Moving on to the Lab
+
 ```{r fig.margin=TRUE, eval=TRUE, echo=FALSE}
 include_graphics("img/mitch-hedgeberg-lqd.jpg")
 ```
@@ -34,6 +117,8 @@ The inspiration for this lab comes from a blog post by John Reiser on his *new j
 
 ## Getting started
 
+You may close the merge-conflicts.Rmd file, and you should open the lab-04-viz-sp-data.Rmd file.
+
 ### Packages
 
 In this lab we will use the **tidyverse** and **dsbox** packages.
@@ -45,30 +130,13 @@ library(dsbox)
 
 ## Housekeeping
 
-### Project name
+We will no longer tell you which team member should type, commit, and push each exercise.
 
-Currently your project is called *Untitled Project*. Update the name of your project to be "Lab 03 - Visualizing spatial data".
-
-### Warm up
-
-**Pick one team member to complete the steps in this section while the others contribute to the discussion but do not actually touch the files on their computer.**
-
-Before we introduce the data, let's warm up with some simple exercises.
+**Be sure only one team member is typing at a time, and that they push their changes when finished. Then, everyone else should pull, and it should be the next member's turn. In order to get full credit, each group member must make commits and pushes.**
 
 ### YAML
 
-Open the R Markdown (Rmd) file in your project, change the author name to your **team** name, and knit the document.
-
-### Commiting and pushing changes
-
-- Go to the **Git** pane in your RStudio. 
-- View the **Diff** and confirm that you are happy with the changes.
-- Add a commit message like "Update team name" in the **Commit message** box and hit **Commit**.
-- Click on **Push**. This will prompt a dialogue box where you first need to enter your user name, and then your password.
-
-### Pulling changes
-
-Now, the remaining team members who have not been concurrently making these changes on their projects should click on the **Pull** button in their Git pane and observe that the changes are now reflected on their projects as well.
+In the R Markdown (Rmd) file, change the author name to your **team** name, and knit the document.
 
 ## The data
 
@@ -143,7 +211,7 @@ lq <- lq %>%
 
 9. Which states have the most and fewest Denny's locations? What about La Quinta? Is this surprising? Why or why not?
 
-Next, let's calculate which states have the most Denny's locations *per thousand square miles*. This requires *join*ining information from the frequency tables you created in Exercise 8 with information from the `states` data frame.
+Next, let's calculate which states have the most Denny's locations *per thousand square miles*. This requires *join*ing information from the frequency tables you created in Exercise 8 with information from the `states` data frame.
 
 First, we count how many observations are in each state, which will give us a data frame with two variables: `state` and `n`. Then, we join this data frame with the `states` data frame. However note that the variables in the `states` data frame that has the two-letter abbreviations is called `abbreviation`. So when we're joining the two data frames we specify that the `state` variable from the Denny's data should be matched `by` the `abbreviation` variable from the `states` data:
 
@@ -185,4 +253,10 @@ The following two questions ask you to create visualizations. These should follo
 
 12. Now filter the data for observations in Texas only, and recreate the plot, with an appropriate `alpha` level. Visually, does Mitch Hedberg's joke appear to hold here?
 
-That's it for now! In the next lab we will take a more quantitative approach to answering these questions.
+## Wrapping up and Submission
+
+Make any final changes, and be sure you've followed code style guidelines.
+
+To submit, one team member should upload the team's PDF to Gradescope. **Be sure to select every team member's name in the Gradescope submission**. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. If any answer spans multiple pages, then mark each of the relevant pages. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not participated sufficiently may receive a lower grade than the rest of the group.
+
+There should only be **<u>one</u>** submission per team on Gradescope. 
