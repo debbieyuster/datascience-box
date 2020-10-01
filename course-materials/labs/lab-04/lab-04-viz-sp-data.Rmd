@@ -22,7 +22,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 # Introduction 
 
-Before we get started on today's lab, we will look at something that may happen as you collaborate with your lab team (or any other team!) in GitHub.
+Before we get started on today's lab, we will look at something that may happen as you collaborate with your team in GitHub.
 
 # Merge Conflicts (uh oh)
 
@@ -34,72 +34,101 @@ Before we get started on today's lab, we will look at something that may happen 
 include_graphics("./img/merge-no-conflict.png")
 ```
 
-## Merge conflicts
-
-- When two collaborators make changes to a file and push the file to their repo, git merges these two files.
-- If these two files have conflicting content on the same line, git will produce a **merge conflict**.
-
 ```{r fig.margin=TRUE, fig.cap = "Changes to same lines: Merge conflict", eval = TRUE, echo=FALSE}
 include_graphics("img/merge-conflict.png")
 ```
 
+- Pushing a repo replaces the code on GitHub with the code you have in RStudio. 
+- If someone else has made a change that you haven't incorporated into your local copy, GitHub will stop you from pushing because your push would overwrite your collaborator's work!
+- So you need to explicitly "merge" your collaborators' work before you push.
+- If the changes are in different files, or different parts of the same file,
+  git merges the work for you automatically when you *pull*.
+- If you both changed the same part of a file, git will produce a **merge conflict**
+  because it doesn't know how which change to take.
+  
+Git will put conflict markers in your code that look like:
 
-Merge conflicts need to be resolved manually. This is what you will see in the file with the merge conflict:
+```
+<<<<<<< HEAD
+For help, contact info@rstudio.com.
+=======
+If you need assistance, email help@rstudio.com.  
+>>>>>>> master
+```
 
 ```{r fig.margin=FALSE, eval=TRUE, echo=FALSE}
 include_graphics("img/merge-conflict-identifiers.png")
 ```
 
-To resolve the merge conflict, decide if you want to keep only your text, the 
-text on GitHub, or incorporate changes from both texts. Delete the conflict 
-markers `<<<<<<<`, `=======`, `>>>>>>>` and make the changes you want in the 
-final merge.
+The `===`'s separate *your* changes (top) from *their* changes (bottom)
+
+Your job is to *reconcile* the changes: One person should edit the file so that it incorporates
+the best of both versions and delete the `<<<`, `===`, and `>>>` lines. Then
+Stage and Commit the result.
 
 ## Let's cause a merge conflict!
 
-**Assign numbers 1, 2, 3, and 4 to each of your team members** (if there are only 3 team 
+Our goal is to see two different types of merges: first we'll see one that git
+can't figure out on its own (a "merge conflict"), then one that it can figure out.
+
+Doing this will require some tight choreography, so pay attention.
+
+Take turns in completing the exercise, only one member at a time. **Others should just watch - DON'T type, pull, or do anything else to your own copies** until instructed to.
+
+**Assign numbers 1, 2, 3, and 4 to each of the team members** (if there are only 3 team 
 members, just number 1 through 3). Go through the following steps in detail, 
 which simulate a merge conflict. Completing this exercise will be part of the 
 lab grade.
 
-**Everyone** clone the group's **lab-04-viz-sp-data** assignment repo (from GitHub) in RStudio (within our course workspace) and open the file **merge-conflict.Rmd**.
+**Everyone** clone the group's **lab-04-viz-sp-data** assignment repo (from GitHub) into RStudio (within our course workspace) and open the file **merge-conflict.Rmd**.
 
-`r emo::ji("stop_sign")` Nobody should move on until all group members have completed this step.
-
-**Member 4** will be in charge of looking at the group’s repo on GitHub.com to ensure that the other 
-members’ files are pushed to GitHub after every step.
+`r emo::ji("stop_sign")` Nobody should move on or type anything until all group members have completed this step.
 
 **Member 1:** Change the team name to your team name. Knit, commit, and push.
 
-`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+`r emo::ji("stop_sign")` Nobody should move on until this step is complete. Nobody should pull.
 
-**Member 2:** Change the team name to something different (i.e., not your
-team name). Knit, commit, and push. 
+**Member 2:** (Take over screen sharing so everyone can watch this)
 
-You should get an error.
-
-**Pull** and review the document with the merge conflict. Read the error to your teammates. You can also show them the error by sharing your screen. A merge conflict occurred because you edited the same part of the 
-document as Member 1. Resolve the conflict with whichever name you want to keep,
-then knit, commit and push again.
-
-`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
-
-**Member 3:** Write some narrative in the space provided. You should get an error.
-
-This time, no merge conflicts should occur, since you edited a different part of
-the document from Members 1 and 2. Read the error to your teammates. You can also show them the error by sharing your screen. 
-
-Click to pull.  Then, knit, commit, and push.
+- Change the team name to some other word.
+- Knit, commit, push. You should get an error.
+- Pull. Take a look at the document with the merge conflict.
+- Clear the merge conflict by choosing the correct/preferred change, and deleting the `<<<`, `===`, and `>>>` lines.
+- Knit.
+- **Click the Stage checkbox** for all files in your Git tab. Make sure they
+    all have check marks, not filled-in boxes.
+- Commit and push.
 
 `r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+
+**Member 3:** (Take over screen sharing so everyone can watch this)
+
+* Write some narrative in the space provided in the Rmd file, on Line 13.
+* Knit, commit, push. You should get an error.
+* Pull. No merge conflicts should occur, but you should see a message about merging.
+* Now knit, commit, and push.
+
+`r emo::ji("stop_sign")` Nobody should move on until this step is complete.
+
+**Member 4:** (Take over screen sharing so everyone can watch this)
+
+* Write some different narrative in the space provided in the Rmd file, on Line 13.
+* Knit, commit, push. You should get an error.
+* Pull. Take a look at the document with the merge conflict. Clear the merge conflict by choosing the correct/preferred change.
+* Knit.
+* Stage, commit, and push.  
 
 **All members:** Pull, and observe the changes in your document.
 
 ### Tips for collaborating via GitHub
 
-- Always pull first before you start working.
-- Commit, and push, often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
-- If you find yourself in a situation that is difficult to resolve, ask questions asap, don't let it linger and get bigger.
+- Always **Pull** first before you start working.
+- Resolve a merge conflict (commit and push) *before* continuing your work. Never do
+  new work while resolving a merge conflict.
+- Knit, Commit, and Push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
+- If you find yourself in a situation that is difficult to resolve, ask questions ASAP. Don't let it linger and get bigger.
+
+(Optional further reading: [Merge conflicts in the classroom](https://github.blog/2018-08-22-merge-conflicts-in-the-classroom/).)
 
 # Moving on to the Lab
 
