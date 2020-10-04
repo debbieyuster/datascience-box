@@ -242,7 +242,7 @@ laquinta <- laquinta %>%
 
 9. Which states have the most and fewest Denny's locations? What about La Quinta? Is this surprising? Why or why not?
 
-In the next exercise, let's calculate which states have the most Denny's locations *per thousand square miles*. This requires *join*ing information from the frequency tables you created in Exercise 9 with information from the `states` data frame.
+In the next exercise, let's calculate which states have the most Denny's locations *per square mile*. This requires *join*ing information from the frequency tables you created in Exercise 9 with information from the `states` data frame.
 
 First, we count how many observations are in each state, which will give us a data frame with two variables: `state` and `n`. Then, we join this data frame with the `states` data frame. However note that the variable in the `states` data frame that has the two-letter abbreviations is called `abbreviation`. So when we're joining the two data frames we specify that the `state` variable from the Denny's data should be matched `by` the `abbreviation` variable from the `states` data:
 
@@ -273,7 +273,7 @@ Since the two data frames have the same columns, we can easily bind them with th
 dn_lq <- bind_rows(dennys, laquinta)
 ```
 
-We can plot the locations of the two establishments using a scatter plot, and color the points by the establishment type. Note that the latitude is plotted on the x-axis and the longitude on the y-axis.
+We can plot the locations of the two establishments using a scatter plot, and color the points by the establishment type. Note that the longitude is plotted on the x-axis and the latitude on the y-axis.
 
 ```{r}
 ggplot(dn_lq, mapping = aes(x = longitude, y = latitude, color = establishment)) +
