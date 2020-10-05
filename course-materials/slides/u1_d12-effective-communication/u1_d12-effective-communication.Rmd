@@ -93,7 +93,7 @@ Leek, Jeffery T., and Roger D. Peng. "What is the question?." Science 347.6228 (
 
 .question[
 Suppose I want to estimate the average number of children in households in 
-Edinburgh. I conduct a survey at an elementary school in Edinburgh and ask 
+Mahwah. I conduct a survey at an elementary school in Mahwah and ask 
 students at this elementary school how many children, including themselves, 
 live in their house. Then, I take the average of the responses. Is this a 
 biased or an unbiased estimate of the number of children in households in Edinburgh? 
@@ -165,7 +165,7 @@ fav_food %>% clean_names()
 - This table contains squirrel data for each of the 3,023 sightings, including location coordinates, age, primary and secondary fur color, elevation, activities, communications, and interactions between squirrels and with humans.
 
 ```{r}
-#install_github("mine-cetinkaya-rundel/nycsquirrels18")
+#devtools::install_github("mine-cetinkaya-rundel/nycsquirrels18")
 library(nycsquirrels18)
 ```
 
