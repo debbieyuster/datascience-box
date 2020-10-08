@@ -43,23 +43,9 @@ library(tidyverse)
 library(dsbox) 
 ```
 
-### Housekeeping
-
-#### Password caching
-
-If you would like your git password cached for a week for this project, type the following in the Terminal:
-
-```{bash eval=FALSE}
-git config --global credential.helper 'cache --timeout 604800'
-```
-
-#### Project name
-
-Currently your project is called *Untitled Project*. Update the name of your project to be "Lab 04 - Wrangling spatial data".
-
 ## Warm up
 
-**Pick one team member to complete the steps in this section while the others contribute to the discussion but do not actually touch the files on their computer.**
+**Pick one team member to complete the steps in the Warm Up section while the others contribute to the discussion but do not actually touch the files on their computer.**
 
 Before we introduce the data, let's warm up with some simple exercises.
 
@@ -67,7 +53,7 @@ Before we introduce the data, let's warm up with some simple exercises.
 
 Open the R Markdown (Rmd) file in your project, change the author name to your **team** name, and knit the document.
 
-### Commiting and pushing changes:
+### Committing and pushing changes:
 
 - Go to the **Git** pane in your RStudio. 
 - View the **Diff** and confirm that you are happy with the changes.
