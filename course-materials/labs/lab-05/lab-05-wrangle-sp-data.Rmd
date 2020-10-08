@@ -187,7 +187,7 @@ This function takes five arguments:
 
 6. Create a variable called `distance` in the `dn_lq_ak` data frame, which calculates the distances between all pairs of Denny's and La Quinta locations in Alaska. Make sure to save this variable in the data frame so you can use it later.
    
-7. Calculate the minimum distance between Denny's and La Quinta for each Denny's location in Alaska. To do so, create a new data frame called `dn_lq_ak_mindist` which starts from the data frame  `dn_lq_ak`, groups it by Denny's locations (`address.x`), and then uses the `summarise` function to create a new variable which contains the minimum distance within each group (in other words, the minimum distance from each Denny's location). Finally, ungroup the resulting table.
+7. Calculate the minimum distance between Denny's and La Quinta for each Denny's location in Alaska. To do so, create a new data frame called `dn_lq_ak_mindist` which starts from the data frame  `dn_lq_ak`, groups it by Denny's locations (`address.x`), and then uses the `summarise` function to create a new variable which contains the minimum distance within each group (in other words, the minimum distance from each Denny's location).
 
 8. Describe the distribution of the distances between Denny's and the nearest La Quinta locations in Alaska. Also include an appropriate visualization and relevant summary statistics (using the `summary` function). 
    
