@@ -6,7 +6,7 @@
 
 2. This exam is open book, open internet, closed other people. You may use any online or book based resource you would like, but you must include citations for any code that you use (directly or indirectly). You **may not** consult with anyone else about this exam other than the Professor or TA for this course. You cannot ask direct questions on the internet, or consult with each other, not even for hypothetical questions.
 
-3. You have until **11:59pm on Friday, Feb 16** to complete this exam and turn it in via your personal Github repo - late work will **not** be accepted. Technical difficulties are **not** an excuse for late work - do not wait until the last minute to knit / commit / push.
+3. You have until **[SOME DATE AND TIME]** to complete this exam, push all files to GitHub, and turn in the PDF on Gradescope - late work will **not** be accepted. Technical difficulties are **not** an excuse for late work - do not wait until the last minute to knit / commit / push.
 
 4. Each question requires a (brief) narrative as well as a 
 (brief) description of your approach. You can use comments in your code, but do not extensively count on these. I should be able to suppress **all** the code in your document and still be able to read and make sense of your answers. See the first setup code chunk in your Rmd file to experiment with suppressing and revealing your code. 
@@ -22,22 +22,22 @@
 
 ## Academic Integrity Statement
 
-*I, ____________, hereby state that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor or TA during this exam, and that all work is my own.*
+*I, ____________, hereby state that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor during this exam, and that all work is my own.*
 
 **A note on sharing / reusing code:** I am well aware that a huge volume of code is available on the web to solve any number of problems. For this exam you are allowed to make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). You are also not allowed to ask a question on an external forum, you can only use answers to questions that have already been answered.
 Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. All communication with classmates is explicitly forbidden.
 
 ## Getting help
 
-You are not allowed to post any questions on the public community repo or the public questions channel on Slack. Any questions about the exam must be asked in person in office hours or on Slack via direct message to the Professor or the TAs. For quickest response we recommend that you start a direct message with the Professor and all the TAs so that whoever gets to it first can respond to you.
+You are not allowed to post any questions on the Piazza. Any questions about the exam must be asked in office hours or through email with the Professor.
 
 ## Grading and feedback
 
-The total points for the questions add up to 90 points. The remaining 10 points are allocated to code style, commit frequency and messages, overall organization, spelling, grammar, etc. There is also an extra credit question that is worth 5 points. You will receive feedback as an issue posted to your repository, and your grade will also be recorded on Sakai.
+The total points for the questions add up to 90 points. The remaining 10 points are allocated to code style, commit frequency and messages, overall organization, spelling, grammar, etc. There is also an extra credit question that is worth 5 points.
 
 ## Logistics
 
-Answer the questions in the document called `exam-01.Rmd`. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise.
+Answer the questions in the document called `sample-exam-01.Rmd`. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise.
 
 Before completing, make sure to supress the code and look over your answers one more time. If the narrative seems sparse or choppy, edit as needed. Then, revert back to revealing your code.
 
