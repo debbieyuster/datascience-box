@@ -34,11 +34,11 @@ class: middle
 - Increasing amount of data is available on the web
 --
 
-- These data are provided in an unstructured format: you can always copy&paste, 
-but it's time-consuming and prone to errors
+- These data are provided in an unstructured format: you can always copy and paste, 
+but it's time consuming and prone to errors
 
 --
-- Web scraping is the process of extracting this information automatically and transform it into a structured dataset
+- Web scraping is the process of extracting this information automatically and transforming it into a structured dataset
 
 --
 - Two different scenarios:
@@ -58,7 +58,7 @@ class: middle
 ## Hypertext Markup Language
 
 - Most of the data on the web is still largely available as HTML 
-- It is structured (hierarchical / tree based), but it''s often not available in 
+- It is structured (hierarchical / tree based), but it's often not available in 
 a form useful for analysis (flat / tidy).
 
 ```html
@@ -77,7 +77,7 @@ a form useful for analysis (flat / tidy).
 ## rvest
 
 .pull-left[
-- The **rvest** package makes basic processing and manipulation of HTML data straight forward
+- The **rvest** package makes basic processing and manipulation of HTML data straightforward
 - It's designed to work with pipelines built with `%>%`
 ]
 .pull-right[
@@ -178,7 +178,7 @@ paths_allowed("http://www.facebook.com")
 ---
 
 .your-turn[
-- [RStudio Cloud](http://rstd.io/dsbox-cloud) > `AE 08 - IMDB + Webscraping`.
+- RStudio Cloud > `AE 08 - IMDB + Webscraping`.
 - Open `01-imdb-250movies.R`.
 - Follow along, and fill in the blanks as we go based on upcoming slides.
 ]
@@ -203,7 +203,7 @@ years <- page %>%
   as.numeric()
 
 scores <- page %>%
-  html_nodes("#main strong") %>%
+  html_nodes("strong") %>%
   html_text() %>%
   as.numeric()
   
@@ -272,9 +272,7 @@ How would you go about answering this question: Which years have the most movies
 
 ```{r}
 imdb_top_250 %>% 
-  group_by(year) %>%
-  summarise(total = n()) %>%
-  arrange(desc(total)) %>%
+  count(year) %>%
   head(5)
 ```
 
