@@ -1,5 +1,5 @@
 ---
-title: "Showcase your inner data scientist"
+title: "Project: Showcase your inner data scientist"
 output: 
   html_document: 
     css: hw.css
@@ -15,198 +15,250 @@ knitr::include_graphics("img/laptop-3190194_1920.jpg")
 ```
 </div>
 
-# TL;DR
+# Timeline
 
-Pick a dataset, any dataset...
+Proposal due **Monday, November 2**
 
-...and do something with it. That is your final project in a nutshell. More details below.
+Draft report due **Thursday, December 3** 
 
-PS: Please don't make pie charts for your project.
+Peer feedback due **Thursday, December 10**
 
-# May be too long, but please do read
+Final report, presentation video, slides, repo due **Thursday, December 17**
 
-The final project for this class will consist of analysis on a dataset of your own 
-choosing. The dataset may already exist, or you may collect your own data using a 
-survey or by conducting an experiment. You can choose the data based on your interests 
-or based on work in other courses or research projects. The goal of this project is for 
-you to demonstrate proficiency in the techniques we have covered in this class (and 
-beyond, if you like) and apply them to a novel dataset in a meaningful way.
+Presentation comments [optional extra credit] due **Sunday, December 20**
 
-## Data
+**TL;DR**: Pick a dataset and do something with it. That is your final project.
 
-In order for you to have the greatest chance of success with this project it is important that 
-you choose a manageable dataset. This means that the data should be readily accessible and large 
-enough that multiple relationships can be explored. As such, your dataset must have at least 50 
-observations and between 10 to 20 variables (exceptions can be made but you must speak with me 
-first). The dataset’s variables should include categorical variables, discrete numerical 
-variables, and continuous numerical variables.
+The final project for this class will consist of analysis on a dataset of your own choosing. The dataset may already exist, or you may collect your own data by scraping the web.  
 
-All analyses must be done in RStudio. If you are using a dataset that comes in a format that 
-we haven't encountered in class, make sure that you are able to load it into RStudio as this 
-can be tricky depending on the source. If you are having trouble ask for help before it is too late.
+Choose the data based on your group's interests or work you have done in other courses or research projects. The goal of this project is for you to demonstrate proficiency in the techniques we have covered in this class (and beyond, if you like!) and apply them to a dataset to analyze it in a meaningful way.
 
-*Reusing datasets from class:* Do not reuse datasets used in examples / homework in the
-class.
+### Logistics
 
-## Components
+You will work on the project with your lab groups.
 
-### Project proposal
+The four primary deliverables for the final project are
 
-This is a draft of the introduction section of your project as well as a 
-data analysis plan and your dataset. Each section should be no more than 1 
-page (excluding figures). You can check a print preview to confirm length. 
-Your write up and all typesetting must be done with using R Markdown.
+- A written, reproducible report detailing your analysis
+- A GitHub repository corresponding to your report
+- Slides + a video presentation
+- Formal peer review on another team's project
 
-#### Section 1 - Introduction: 
+## Overall grading
 
-The introduction should introduce your general research 
-question and your data (where it came from, how it was collected, what 
-are the cases, what are the variables, etc.).
+The grade breakdown is as follows:
 
-#### Section 2 - Data analysis plan: 
-
-The data analysis plan should include:
-
-- The outcome (dependent, response, Y) and predictor (independent, explanatory, X) 
-variables you will use to answer your question.
-- The comparison groups you will use, if applicable.
-- Very preliminary exploratory data analysis, including some summary statistics and 
-visualizations, along with some explanation on how they help you learn more about your data.
-(You can add to these later as you work on your project..)
-- The statistical method(s) that you believe will be useful in answering your question(s). 
-(You can update these later as you work on your project.)
--  What results from these specific statistical methods are needed to support your 
-hypothesized answer?
-
-#### Section 3 - Data: 
-
-Place your data in the `/data` folder, and add dimensions and codebook to the README in this folder. Then print out the output of `glimpse` of your data frame.
-
-#### Grading
-
-Total                                                   | 20 pts
+Total                                                   | 115 pts
 --------------------------------------------------------|--------
-Introduction                                            | 6 pts
-Data analysis plan                                      | 10 pts
-Data                                                    | 2 pts
-Organization and code quality                           | 2 pts
+**Project proposal**                                    | 10 pts
+**Written report**                                      | 50 pts
+**Slides**                                              | 15 pts
+**Repository**                                          | 5 pts
+**Video presentation**                                  | 20 pts
+**Peer feedback**                                       | 15 pts
+
+**<i>Note: No late projects are accepted.</i>**
+
+## Data sources
+
+In order for you to have the greatest chance of success with this project it is important that you choose a manageable dataset. This means that the data should be readily accessible and large enough that multiple relationships can be explored. Therefore, **your dataset must have at least 50 observations and at least 10 variables (exceptions can be made but you must speak with me first).**
+
+In the dataset, there should be 
+
+- categorical variables
+- discrete numerical variables 
+- continuous numerical variables 
 
 
-### Project
+If you are using a dataset that comes in a 
+format that we haven't encountered in class (for instance, a `.DAT` file), make 
+sure that you are able to load it into RStudio as this can be tricky depending 
+on the source. If you are having trouble, ask for help before it is too late.
 
-#### Write up
+**Reusing datasets from class:** Do not reuse datasets used in examples / homework 
+in the class. 
 
-After providing the description of your dataset and research question in the 
-introduction use the remainder of your write up to showcase how you have arrived at 
-an answer / answers to your question using any techniques we have learned in this
-class (and some beyond, if you're feeling adventerous). The goal is not to do an exhaustive 
-data analysis i.e., do not calculate every statistic and procedure you have 
-learned for every variable, but rather let me know that you are proficient at 
-asking meaningful questions and answering them with results of data analysis, that
-you are proficient in using R, and that you are proficient at interpreting and 
-presenting the results. Focus on methods that help you begin to answer your research 
-questions. You do not have to apply every statistical procedure we learned.
-Also pay attention to your presentation. Neatness, coherency, and clarity will count.
+Some resources that may be helpful:
 
-Your write up must also include a one to two page conclusion and discussion. 
-This will require a summary of what you have learned about your research 
-question along with statistical arguments supporting your conclusions. Also 
-critique your own methods and provide suggestions for improving your analysis. 
-Issues pertaining to the reliability and validity of your data, and 
-appropriateness of the statistical analysis should be discussed here. A 
-paragraph on what you would do differently if you were able to start over 
-with the project or what you would do next if you were going to continue 
-work on the project should also be included.
+- [R Data Sources for Regression Analysis](https://rfun.library.duke.edu/blog/data-sources-for-regression-analysis/)
+- [kaggle](https://www.kaggle.com/datasets)
+- [FiveThirtyEight data](https://data.fivethirtyeight.com/)
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+- [World Health Organization](https://www.who.int/gho/database/en/)
+- [The National Bureau of Economic Research](https://data.nber.org/data/)
+- [International Monetary Fund](https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&sId=1479329328660)
+- [General Social Survey](http://gss.norc.org/)
+- [United Nations Data](http://data.un.org/)
+- [United Nations Statistics Division](https://unstats.un.org/home/)
+- [U.K. Data](https://data.gov.uk/)
+- [U.S. Data](https://www.data.gov/)
+- [U.S. Census Data](https://www.census.gov/data.html)
+- [European Statistics](https://ec.europa.eu/eurostat/)
+- [Statistics Canada](https://www.statcan.gc.ca/eng/start)
+- [Pew Research](https://www.pewresearch.org/download-datasets/)
+- [UNICEF](https://data.unicef.org/)
+- [CDC](https://www.cdc.gov/datastatistics/index.html)
+- [World Bank](https://datacatalog.worldbank.org/)
+- [Election Studies](https://electionstudies.org//)
 
-The project is very open ended. You should create some kind of compelling 
-visualization(s) of this data in R. There is no limit on what tools or 
-packages you may use, but sticking to packages we learned in class (`tidyverse`)
-is required. You do not need to visualize all of the data at once. A single high quality 
-visualization will receive a much higher grade than a large number of poor quality 
-visualizations.
+All analyses must be done in RStudio, and your final written report and 
+analysis **must be reproducible**. This means that you must create an R Markdown
+document attached to a GitHub repository that will generate your written report
+exactly upon knitting.
 
-Before you finalize your write up, make sure your chunks are turned off 
-with `echo = FALSE`. 
+## Project proposal 
 
-You can add sections as you see fit to the template in your project repo. Make sure 
-you have a section called Introduction at the beginning and a section called 
-Conclusion at the end. The rest is up to you!
+There are two main purposes of the project proposal:
 
-#### Presentation
+- To help you think about the project early, so you can get a head start on finding data, reading relevant literature, thinking about the questions you wish to answer, etc.
+- To ensure that the data you wish to analyze, methods you plan to use, and the scope of your analysis are feasible and will help you be successful for this project.
 
-6 minutes maximum, and each team member should say something substantial.
+Include the following in the proposal: 
 
-You can use any software you like for your final presentation, including R Markdown
-to create your slides. There isn't a limit to how many slides you can use, just a 
-time limit (6 minutes total). Each team member should get a chance to speak during 
-the presentation. Your presentation should not just be an account of everything you 
+### Section 1 - Introduction
+
+The introduction section includes 
+
+- an introduction to the subject matter you're investigating
+- the motivation for your research question (citing any relevant literature)
+- the general research question you wish to explore 
+- your hypotheses regarding the research question of interest
+
+### Section 2 - Data description 
+
+In this section, you will describe the data set you wish to explore. This includes a description of the observations in the data set, a general description of the variables in the data set, and a description of how the data was originally collected (not how you found the data but how the original curator of the data collected it). 
+
+### Section 3 - Glimpse of data
+
+Use the `glimpse` function print a summary of the data at the end of your proposal.
+
+Place your data in the `/data` folder of the repo. Later on you will include the codebook in the README of the data folder. 
+
+### Submission
+
+Submit the PDF of your proposal in the **Project Proposal** assignment on Gradescope. Be sure to select the names of all team members in the submission. The proposal is due on **Monday, November 2.** 
+
+### Proposal grading
+
+Total                                                   | 10 pts
+--------------------------------------------------------|--------
+**Introduction**                                        | 4 pts
+**Data description**                                    | 4 pts
+**Glimpse of data**                                     | 2 pts
+
+## Draft
+
+Your team's Draft report is due **Thursday, December 3**. As you work on the draft, the focus should be on the analysis and less on crafting the final report. **Your draft must include a reasonable attempt at each analysis component - exploratory data analysis, inference or modeling, and drawing initial conclusions.** It does not need to be a final report, but should be a good part of the way there.
+
+## Peer feedback
+
+Critically reviewing others' work is a crucial part of the scientific process, and DATA 101 is no exception. You will be assigned another team's Draft Report to review, and another team will review your draft. As part of the review process, your Draft report is due by **Thursday, December 3**. After receiving the report to be peer-reviewed, you will have until **Thursday, December 10** to provide a detailed critique about the written report and data analysis. This feedback is intended to help your classmates create a high quality final project, as well as give you experience 
+reading and constructively critiquing the work of others.
+
+<!-- During the peer feedback process, you will be provided read-only access to your partner team's GitHub repo. Provide your feedback in the form of GitHub issues to your partner team's GitHub repo.  -->
+
+Peer feedback will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team's report: the research context and motivation, exploratory data analysis, and any inference, modeling, or conclusions.
+
+## Written report
+
+Your written report must be done using R Markdown. All team members must contribute to the GitHub repository, with regular meaningful commits. 
+
+Before you finalize your write up, make sure the printing of code chunks is off with the option `echo = FALSE`. 
+
+Your final report must match your GitHub repository *exactly*. The mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be **no more than 10 pages long.** There is no minimum page requirement; however, you must comprehensively address all of the aspects mentioned below.
+
+Please be judicious in what you include in your final write-up.
+
+The written report is worth 60 points, broken down as
+
+Total                                                   | 60 pts
+--------------------------------------------------------|--------
+**Introduction/data**                                   | 10 pts
+**Methodology**                                         | 20 pts
+**Results**                                             | 20 pts
+**Discussion**                                          | 10 pts
+
+### Introduction and data
+
+The introduction should introduce your general research question and your data (where it came from, how it was collected, what are the observations, what are the variables, etc.). 
+
+### Methodology 
+
+The methodology section should include the variables used to address your research question, as well as any useful visualizations or summary statistics. Additionally, you should introduce and justify the statistical method(s) that you believe will be useful in answering your research question. 
+
+### Results 
+
+Showcase how you arrived at answers to your question using any techniques we have learned in this class (and some beyond, if you're feeling adventurous). Provide the main results from your analysis. The goal is not to do an exhaustive data analysis (i.e., do not calculate every statistic and procedure you have learned for every variable), but rather to show that you are proficient at asking meaningful questions and answering them with results of data analysis, that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Focus on methods that help you begin to answer your research questions. 
+
+### Discussion
+
+This section is a conclusion and discussion. Provide a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project, or what you would do next if you were going to continue work on the project should also be included.
+
+## Presentation Slides
+
+In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. You may use any software for making the slides, such as Powerpoint, Keynote, Google Slides, or R Markdown (using the Xaringan package). Introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted to Gradescope. The slides are due on **Thursday, December 17**.
+
+## Video presentation
+
+Sometime before **Thursday, December 17**, you/your group will upload a video presentation of your project to Techsmith Knowmia. Note that all members must present, and that there is a strict **10-minute time limit**.
+
+For the presentation, you can speak over your slide deck, similar to the course lesson videos. Your presentation should not just be an account of everything you 
 tried ("then we did this, then we did this, etc."), instead it should convey what 
 choices you made, and why, and what you found.
 
-#### Delivarables
+*Recording and submission details to come.*
 
-Your submission should include
+## Project repository
 
-* RMarkdown file (formated to clearly present all of your code and results) 
-* HTML file
-* md file (viewable on GitHub, with all figures)
-* Dataset(s) (in csv or RData format, in a `/data` folder)
-* Presentation (if using Keynote/PowerPoint/Google Slides, export to PDF and put in repo, in a `/presentation` folder)
+In addition to your Gradescope submissions, I will be checking your GitHub repository. This repository should be contributed to equally by all team members and should include
 
-Style and format does count for this assignment, so please take the time to make 
-sure everything looks good and your data and code are properly formated.
+- RMarkdown files (formatted to clearly present all of your code and results): one for the proposal and one for the final report (feel free to copy/paste between these)
+- Meaningful README file on the GitHub repository that contains a *codebook*
+for relevant variables
+- Dataset(s) (in csv or RData format, in a `/data` folder)
+- Presentation (if using Keynote/PowerPoint/Google Slides, export to PDF and put in repo, in a `/presentation` folder)
 
-## Tips
+Style and format does count for this assignment, so please take the time to make sure everything looks good and your data and code are properly formatted.
 
-- You're working in the same repo as your teammates now, so merge conflics will happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.
+The repository must be finalized by **Thursday, December 17**.
 
-- Review the grading guidelines below and ask questions if any of the expectations are unclear.
+## Peer teamwork evaluation
 
-- Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team members).
-
-- Set aside time to work together and apart (physically).
-
-- When you're done, review the .md document on GitHub to make sure you're happy with the final state of your work. Then go get some rest!
-
-- Code: In your write up your code should be hidden (`echo = FALSE`) so that your 
-document is neat and easy to read. However your document should include 
-all your code such that if I re-knit your Rmd file I should be 
-able to obtain the results you presented. **Exception:** If you want to 
-highlight something specific about a piece of code, you're welcomed to show 
-that portion. 
-
-- Teamwork: You are to complete the assignment as a team. All team members are expected 
-to contribute equally to the completion of this assignment and group 
-assessments will be given at its completion - anyone judged to not have sufficient 
-contributed to the final product will have their grade penalized. While different 
-teams members may have different backgrounds and abilities, it is the responsibility 
-of every team member to understand how and why all code and approaches in 
-the assignment works.
-
-## Grading
-
-Total                          | 100 pts
--------------------------------|--------
-Proposal                       | 20 pts
-Presentation                   | 25 pts
-Write up                       | 30 pts
-Classmates' scores             | 5 pts
-Team peer evaluation           | 10 pts
-Repo and document organization | 10 pts
-
-**Team peer evaluation:** You will be asked to fill out a survey where you 
-rate the contribution and teamwork of each team member out of 10 points. You will 
-additionally report a contribution percentage for each team member. Filling out the 
-survey is a prerequisite for getting credit on the team member evaluation.
-If you are suggesting that an individual did less than 20% of the work, please
+You will be asked to fill out a survey where you rate the contribution and teamwork of each team member by assigning a contribution percentage for each team member. Filling out the survey is a prerequisite for getting credit on the team member evaluation. If you are suggesting that an individual did less than half the expected contribution given your team size (e.g., for a team of four students, if a student contributed less than 12.5% of the total effort), please
 provide some explanation. If any individual gets an average peer score 
-indicating that they did less than 10% of the work, this person will receive 
-half the grade of the rest of the group.
+indicating that this was the case, their grade will be assessed accordingly.
+
+
+## Additional notes and tips
+
+The project is very open ended. For instance, in creating a compelling 
+visualization(s) of your data in R, there is no limit on what tools or 
+packages you may use. You do not need to visualize all of the data at once. A single high quality visualization will receive a much higher grade than a large number of poor quality visualizations.
+
+Before you finalize your write up, make sure the printing of code chunks is turned off with the option `echo = FALSE`. In addition to code chunks, ensure all messages are turned off with the options `warning = FALSE` and `echo = FALSE`. 
+
+Finally, pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count.
+
+
+### Tips
+
+- Ask questions if any of the expectations are 
+unclear.
+
+- *Code*: In your write up your code should be hidden (`echo = FALSE`) so that your document is neat and easy to read. However your document should include all your code such that if I re-knit your Rmd file I should be able to obtain the results you presented. 
+  - **Exception:** If you want to highlight something 
+specific about a piece of code, you're welcome to show that portion. 
+- Merge conflicts will 
+happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.
+- Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team  members).
+- All team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in  the assignment works.
+
+### Grading summary
 
 Grading of the project will take into account the following:
 
 - Content - What is the quality of research and/or policy question and relevancy 
-of data to thosequestions?
+of data to those questions?
 - Correctness - Are statistical procedures carried out and explained correctly?
 - Writing and Presentation - What is the quality of the statistical presentation, 
 writing, and explanations?
@@ -216,21 +268,20 @@ the planning and implementation of the project?
 
 A general breakdown of scoring is as follows:
 
-- 90%-100% - Outstanding effort. Student understands how to apply all statistical 
+- *90%-100%*: Outstanding effort. Student understands how to apply all statistical 
 concepts, can put the results into a cogent argument, can identify weaknesses in 
 the argument, and can clearly communicate the results to others.
-- 80%-89% - Good effort. Student understands most of the concepts, puts together 
+- *80%-89%*: Good effort. Student understands most of the concepts, puts together 
 an adequate argument, identifies some weaknesses of their argument, and communicates 
 most results clearly to others.
-- 70%-79% - Passing effort. Student has misunderstanding of concepts in several 
+- *70%-79%*: Passing effort. Student has misunderstanding of concepts in several 
 areas, has some trouble putting results together in a cogent argument, and communication 
 of results is sometimes unclear.
-- 60%-69% - Struggling effort. Student is making some effort, but has misunderstanding 
+- *60%-69%*: Struggling effort. Student is making some effort, but has misunderstanding 
 of many concepts and is unable to put together a cogent argument. Communication 
 of results is unclear.
-- Below 60% - Student is not making a sufficient effort.
+- *Below 60%*: Student is not making a sufficient effort.
 
-**Late penalty:**
+## Late work policy
 
-- Late, but within 24 hours of due date/time: -20% (only applies to written portion, there is no option to do your presentation later)
-- Any later: no credit 
+**There is no late work accepted on this project.** Be sure to turn in your work early to avoid any technological mishaps.
