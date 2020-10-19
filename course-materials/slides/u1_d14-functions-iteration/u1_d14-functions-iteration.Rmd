@@ -546,14 +546,17 @@ uoe_art_info <- map_df(uoe_art$link, scrape_art_info)
 
 ---
 
+.small[
 ```{r include=FALSE}
 uoe_art_info_1 <- read_csv("data/uoe-art-info-1.csv")
 ```
 
-```{r echo=FALSE, out.width = "70%"}
+
+```{r echo=FALSE}
 uoe_art_info_1 %>% 
   datatable()
 ```
+]
 
 ---
 
