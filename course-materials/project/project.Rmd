@@ -39,6 +39,7 @@ You will work on the project with your lab groups.
 
 The four primary deliverables for the final project are
 
+- A project proposal
 - A written, reproducible report detailing your analysis
 - A GitHub repository corresponding to your report
 - Slides + a video presentation
