@@ -1,5 +1,5 @@
 ---
-title: "Lab 08 - UoE Art Collection"
+title: "Lab 07 - UoE Art Collection"
 author: "YOUR TEAM NAME"
 date: "TODAY'S DATE"
 output: github_document

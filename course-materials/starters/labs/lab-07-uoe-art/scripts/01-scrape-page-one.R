@@ -27,14 +27,14 @@ links <- page %>%
   html_attr("href") %>%
   str_replace("___", "___")
 
-# scrape artists ---------------------------------------------------------------
+# Exercise 2: Scrape artists ---------------------------------------------------
 
 artists <- page %>%
   html_nodes(".iteminfo") %>%
   html_node("___") %>%
   ___
 
-# put together in a data frame -------------------------------------------------
+# Exercise 3: Put together in a data frame -------------------------------------
 
 first_ten <- tibble(
   title = ___,
@@ -42,7 +42,7 @@ first_ten <- tibble(
   link = ___
 )
 
-# scrape second ten paintings --------------------------------------------------
+# Exercise 4: crape second ten paintings ---------------------------------------
 
 second_url <- "___"
 
