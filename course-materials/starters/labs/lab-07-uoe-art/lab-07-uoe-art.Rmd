@@ -25,7 +25,8 @@ uoe_art <- read_csv("data/uoe-art.csv")
 ```{r}
 uoe_art <- uoe_art %>%
   separate(title, into = c("___", "___"), sep = "___") %>%
-  mutate(year = str_remove(date, "___") %>% as.numeric()) %>%
+  mutate(year = str_remove(date, "___") %>%
+  as.numeric()) %>%
   select(title, artist, year, link)
 ```
 

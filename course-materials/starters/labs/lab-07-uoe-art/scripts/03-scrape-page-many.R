@@ -15,4 +15,4 @@ ___ <- map_dfr(___, ___)
 
 # Exercise 9: Write out data frame ---------------------------------------------------------
 
-write_csv(uoe_art, path = "data/uoe-art.csv")
+write_csv(uoe_art, file = "data/uoe-art.csv")
