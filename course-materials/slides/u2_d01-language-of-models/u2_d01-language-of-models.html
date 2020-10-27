@@ -3,7 +3,7 @@
   <head>
     <title>The language of models   📈</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="author" content="" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -13,7 +13,6 @@
 class: center, middle, inverse, title-slide
 
 # The language of models <br> 📈
-### 
 
 ---
 
@@ -90,7 +89,7 @@ https://www.youtube.com/watch?v=apaE1Q7r4so
 
 ## Auctions back in the day
 
-&lt;img src="img/old-auction.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/old-auction.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)
 
@@ -193,10 +192,10 @@ Describe the distribution of widths of paintings.
 - A function is a mathematical concept: the relationship between an output
 and one or more inputs. 
     - Plug in the inputs and receive back the output
-    - Example: the formula `\(y = 3x + 7\)` is a function with input `\(x\)` and output `\(y\)`,
+    - Example: the formula `\(y = 3x + 7\)` is a function with input `\(x\)` and output `\(y\)`;
     when `\(x\)` is `\(5\)`, the output `\(y\)` is `\(22\)`
     ```
-    y = 3 * 5 + 7 = 22
+    y = 3*5 + 7 = 22
     ```
 
 ---
@@ -345,7 +344,7 @@ human subject.&lt;sup&gt;2&lt;/sup&gt;
 ## Multiple explanatory variables
 
 .question[
-How, if at all, the relatonship between width and height of paintings vary by 
+How, if at all, does the relationship between width and height of paintings vary by 
 whether or not they have any landscape elements?
 ]
 .small[
@@ -389,7 +388,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
 data. This is a great advantage of modeling over simple visual inspection of
 data. 
 - There is a real risk, however, that a model is imposing structure that is
-not really there on the scatter of data, just as people imagine animal shapes in
+not really there on the scatter plot of data, just as people imagine animal shapes in
 the stars. A skeptical approach is always warranted.
 
 ---

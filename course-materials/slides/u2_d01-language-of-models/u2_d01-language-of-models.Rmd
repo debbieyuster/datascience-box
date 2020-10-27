@@ -82,7 +82,7 @@ https://www.youtube.com/watch?v=apaE1Q7r4so
 
 ## Auctions back in the day
 
-```{r out.width="80%", echo=FALSE}
+```{r out.width="75%", echo=FALSE}
 knitr::include_graphics("img/old-auction.png")
 ```
 
@@ -178,10 +178,10 @@ ggplot(data = pp, aes(x = Width_in)) +
 - A function is a mathematical concept: the relationship between an output
 and one or more inputs. 
     - Plug in the inputs and receive back the output
-    - Example: the formula $y = 3x + 7$ is a function with input $x$ and output $y$,
+    - Example: the formula $y = 3x + 7$ is a function with input $x$ and output $y$;
     when $x$ is $5$, the output $y$ is $22$
     ```
-    y = 3 * 5 + 7 = 22
+    y = 3*5 + 7 = 22
     ```
 
 ---
@@ -346,7 +346,7 @@ human subject.<sup>2</sup>
 ## Multiple explanatory variables
 
 .question[
-How, if at all, the relatonship between width and height of paintings vary by 
+How, if at all, does the relationship between width and height of paintings vary by 
 whether or not they have any landscape elements?
 ]
 .small[
@@ -391,7 +391,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
 data. This is a great advantage of modeling over simple visual inspection of
 data. 
 - There is a real risk, however, that a model is imposing structure that is
-not really there on the scatter of data, just as people imagine animal shapes in
+not really there on the scatter plot of data, just as people imagine animal shapes in
 the stars. A skeptical approach is always warranted.
 
 ---
