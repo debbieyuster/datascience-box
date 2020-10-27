@@ -23,14 +23,7 @@ library(here)
 ```
 
 
-
-class: middle
-
-# Interpreting models
-
----
-
-## The data
+## Recall: The Paris Paintings dataset
 
 ```{r load-pp, message=FALSE}
 pp <- read_csv(
@@ -39,9 +32,9 @@ pp <- read_csv(
   )
 ```
 
----
+--
 
-## Height & width
+### Height & width
 
 .small[
 ```{r}
@@ -50,214 +43,7 @@ tidy(m_ht_wt)
 ```
 ]
 
---
-
 $$\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}$$
-
---
-- **Slope:** For each additional inch the painting is wider, the height is 
-expected to be higher, on average, by 0.78 inches.
-
---
-- **Intercept:** Paintings that are 0 inches wide are expected to be 3.62 
-inches high, on average. The intercept is meaningless in the context of these 
-data, it only serves to adjust the height of the line.
-
----
-
-## Linear model with a single predictor
-
-- We're interested in $\beta_0$ (population parameter for the intercept) and 
-$\beta_1$ (population parameter for the slope) in the following model:
-
-$$ \hat{y} = \beta_0 + \beta_1~x $$
-
---
-- But we don't have access to the population, so we use sample statistics to estimate them:
-
-$$ \hat{y} = b_0 + b_1~x $$
-
---
-- Another way of describing this model is
-
-$$y = b_0 + b_1~x + e $$
-
----
-
-## Least squares regression
-
-- The regression line minimizes the sum of squared residuals.
-
---
-- If $e_i = y - \hat{y}$, then, the regression line minimizes 
-$\sum_{i = 1}^n e_i^2$.
-
----
-
-## Properties of the least squares regression line
-
-- The regression line goes through the center of mass point, the coordinates corresponding to average $x$ and average $y$: $(\bar{x}, \bar{y})$:  
-$$\hat{y} = b_0 + b_1 x ~ \rightarrow ~ b_0 = \hat{y} - b_1 x$$
-
---
-- The slope has the same sign as the correlation coefficient: $b_1 = r \frac{s_y}{s_x}$
-
---
-- The sum of the residuals is zero: $\sum_{i = 1}^n e_i = 0$
-
---
-- The residuals and $x$ values are uncorrelated.
-
----
-
-## Height & landscape features
-
-```{r}
-m_ht_lands <- lm(Height_in ~ factor(landsALL), data = pp)
-tidy(m_ht_lands)
-```
-
---
-
-$$\widehat{Height_{in}} = 22.68 - 5.65~landsALL$$
-
----
-
-## Height & landscape features (cont.)
-
-- **Slope:** Paintings with landscape features are expected, on average,
-to be 5.65 inches shorter than paintings that without landscape features.
-    - Compares baseline level (`landsALL = 0`) to other level
-    (`landsALL = 1`).
-- **Intercept:** Paintings that don't have landscape features are expected, on 
-average, to be 22.68 inches tall.
-
----
-
-## Categorical predictor with 2 levels
-
-```{r echo=FALSE}
-pp %>% 
-  select(name, price, landsALL) %>% 
-  slice(1:8)
-```
-
----
-
-## Relationship between height and school
-
-```{r}
-m_ht_sch <- lm(Height_in ~ school_pntg, data = pp)
-tidy(m_ht_sch)
-```
-
---
-
-.question[
-Where did all these new predictors come from?
-]
-
----
-
-## Categorical explanatory variables with 3+ levels
-
-- When the categorical explanatory variable has many levels, they're encoded to
-**dummy variables**.
-- Each coefficient describes the expected difference between heights in that 
-particular school compared to the baseline level.
-
-.midi[
-```{r echo=FALSE}
-tidy(m_ht_sch)
-```
-]
-
---
-
-.question[
-What is the baseline level?
-]
-
----
-
-.question[
-`landsALL` had two levels: 0 and 1. What was the baseline level for the model with `landsALL` as predictor?
-]
-
-```{r echo=FALSE}
-tidy(m_ht_lands)
-```
-
----
-
-.question[
-`school` has 7 levels: A = Austrian, D/FL = Dutch/Flemish, F = French, G = German, I = Italian, S = Spanish, X = Unknown. What us the baseline level for the model with `school` as predictor?
-]
-
-```{r echo=FALSE}
-tidy(m_ht_sch)
-``` 
-
----
-
-## Dummy coding
-
-```{r echo=FALSE}
-pp %>% 
-  select(school_pntg) %>% 
-  group_by(school_pntg) %>% 
-  sample_n(1) %>%
-  mutate(
-    D_FL = as.integer(ifelse(school_pntg == "D/FL", 1L, 0)),
-    F    = as.integer(ifelse(school_pntg == "F", 1L, 0)),
-    G    = as.integer(ifelse(school_pntg == "G", 1L, 0)),
-    I    = as.integer(ifelse(school_pntg == "I", 1L, 0)),
-    S    = as.integer(ifelse(school_pntg == "S", 1L, 0)),
-    X    = as.integer(ifelse(school_pntg == "X", 1L, 0))
-  )
-```
-
----
-
-## Interpretation of coefficients
-
-.question[
-Interpret the intercept, slope for Dutch/Flemish, slope for Spanish paintings.
-]
-
-```{r echo=FALSE}
-tidy(m_ht_sch)
-``` 
-
----
-
-## The linear model with multiple predictors
-
-- Population model:
-
-$$ \hat{y} = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \cdots + \beta_k~x_k $$
-
---
-
-- Sample model that we use to estimate the population model:
-  
-$$ \hat{y} = b_0 + b_1~x_1 + b_2~x_2 + \cdots + b_k~x_k $$
-
----
-
-## Correlation does not imply causation!
-
-Remember this when interpreting model coefficients
-
-<br>
-
-```{r echo=FALSE}
-knitr::include_graphics("img/cell_phones.png")
-```
-
-.footnote[
-Source: XKCD, [Cell phones](https://xkcd.com/925/)
-]
 
 ---
 
@@ -297,8 +83,8 @@ Use the `predict()` function to make a prediction:
 
 - First argument: model
 - Second argument: data frame representing the new observation(s) for which 
-you want to make a prediction, with variables with the same names as those 
-to build the model, except for the response variables
+you want to make a prediction, with variables having the same names as those 
+used to build the model, except for the response variables
 
 ---
 
@@ -372,11 +158,11 @@ model.
 
 ---
 
-## Height vs. lanscape features
+## Height vs. landscape features
 
 .question[
 Which of the following is the correct interpretation of $R^2$ of the model 
-below.
+below?
 ]
 
 .small[
@@ -386,7 +172,7 @@ glance(m_ht_lands)$r.squared
 ```
 ]
 
-**(a)** 3.5% of the variability in heights of painting can be explained by 
+**(a)** 3.5% of the variability in heights of paintings can be explained by 
 whether or not the painting has landscape features.
 
 **(b)** 3.5% of the variability in whether a painting has landscape features 
@@ -443,9 +229,11 @@ m_ht_wt
 
 #### Option 2:
 
+.small[
 ```{r}
 summary(m_ht_wt)
 ```
+]
 
 ---
 
@@ -464,7 +252,7 @@ What makes a data frame tidy?
 
 ## Tidy regression output
 
-Achieved with functions from the broom package:
+Achieved with functions from the `broom` package:
 
 - `tidy`: Constructs a data frame that summarizes the model's statistical findings: coefficient estimates, *standard errors, test statistics, p-values*.
 - `glance`: Constructs a concise one-row summary of the model. This typically contains values such as $R^2$, adjusted $R^2$, *and residual standard error that are computed once for the entire model*.
