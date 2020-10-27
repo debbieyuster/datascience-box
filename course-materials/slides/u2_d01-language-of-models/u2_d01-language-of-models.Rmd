@@ -561,9 +561,11 @@ tidy(m_ht_lands)
 
 $$\widehat{Height_{in}} = 22.68 - 5.65~landsALL$$
 
----
+<!-- --- -->
 
-## Height & landscape features (cont.)
+<!-- ## Height & landscape features (cont.) -->
+
+--
 
 - **Slope:** Paintings with landscape features are expected, on average,
 to be 5.65 inches shorter than paintings that without landscape features.
