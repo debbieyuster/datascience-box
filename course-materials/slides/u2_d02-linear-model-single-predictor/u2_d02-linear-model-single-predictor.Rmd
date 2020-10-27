@@ -210,7 +210,7 @@ class: middle
 
 ## Not-so-tidy regression output
 
-- You might come accross these in your googling adventures, but we'll try to stay away from them
+- You might come across these in your googling adventures, but we'll try to stay away from them
 - Not because they are wrong, but because they don't result in tidy data frames as results.
 
 ---
