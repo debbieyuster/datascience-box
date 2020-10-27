@@ -521,7 +521,8 @@ $$ \hat{y} = b_0 + b_1~x $$
 ## Properties of the least squares regression line
 
 - The regression line goes through the center of mass point, the coordinates corresponding to average `\(x\)` and average `\(y\)`: `\((\bar{x}, \bar{y})\)`:  
-`$$\hat{y} = b_0 + b_1 x ~ \rightarrow ~ b_0 = \hat{y} - b_1 x$$`
+$$\hat{y} = b_0 + b_1 x $$
+&lt;!-- ~ \rightarrow ~ b_0 = \hat{y} - b_1 x$$ --&gt;
 - The slope has the same sign as the correlation coefficient:  
 `$$b_1 = r \frac{s_y}{s_x}$$`
 - The sum of the residuals is zero:  
@@ -581,6 +582,32 @@ average, to be 22.68 inches tall.
 
 ---
 
+## Categorical predictor with &gt;2 levels
+
+.question[
+`school_pntg` has 7 levels: A = Austrian, D/FL = Dutch/Flemish, F = French, G = German, I = Italian,
+S = Spanish, X = Unknown]
+
+- When the categorical explanatory variable has many levels, they're encoded to
+**dummy variables**.
+
+
+```
+## # A tibble: 7 x 7
+## # Groups:   school_pntg [7]
+##   school_pntg  D_FL     F     G     I     S     X
+##   &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1 A               0     0     0     0     0     0
+## 2 D/FL            1     0     0     0     0     0
+## 3 F               0     1     0     0     0     0
+## 4 G               0     0     1     0     0     0
+## 5 I               0     0     0     1     0     0
+## 6 S               0     0     0     0     1     0
+## # … with 1 more row
+```
+
+---
+
 ## Relationship between height and school
 
 .small[
@@ -604,29 +631,8 @@ tidy(m_ht_sch)
 ```
 ]
 
-- When the categorical explanatory variable has many levels, they're encoded to
-**dummy variables**.
 - Each coefficient describes the expected difference between heights in that 
 particular school compared to the baseline level.
-
----
-
-## Categorical predictor with &gt;2 levels
-
-
-```
-## # A tibble: 7 x 7
-## # Groups:   school_pntg [7]
-##   school_pntg  D_FL     F     G     I     S     X
-##   &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1 A               0     0     0     0     0     0
-## 2 D/FL            1     0     0     0     0     0
-## 3 F               0     1     0     0     0     0
-## 4 G               0     0     1     0     0     0
-## 5 I               0     0     0     1     0     0
-## 6 S               0     0     0     0     1     0
-## # … with 1 more row
-```
 
 ---
 

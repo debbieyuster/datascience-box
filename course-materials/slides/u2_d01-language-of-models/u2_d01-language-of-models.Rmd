@@ -532,7 +532,7 @@ p
 p + 
   geom_segment(mapping = aes(xend = Width_in, yend = .fitted), 
                color = "#A7D5E8", alpha = 0.4) +
-  labs(subtitle = "Data + least squares resgression line + residuals")
+  labs(subtitle = "Data + least squares regression line + residuals")
 ```
 
 ---
@@ -540,7 +540,8 @@ p +
 ## Properties of the least squares regression line
 
 - The regression line goes through the center of mass point, the coordinates corresponding to average $x$ and average $y$: $(\bar{x}, \bar{y})$:  
-$$\hat{y} = b_0 + b_1 x ~ \rightarrow ~ b_0 = \hat{y} - b_1 x$$
+$$\hat{y} = b_0 + b_1 x $$
+<!-- ~ \rightarrow ~ b_0 = \hat{y} - b_1 x$$ -->
 - The slope has the same sign as the correlation coefficient:  
 $$b_1 = r \frac{s_y}{s_x}$$
 - The sum of the residuals is zero:  
@@ -583,23 +584,14 @@ pp %>%
 
 ---
 
-## Relationship between height and school
+## Categorical predictor with >2 levels
 
-.small[
-```{r}
-m_ht_sch <- lm(Height_in ~ school_pntg, data = pp)
-tidy(m_ht_sch)
-```
-]
+.question[
+`school_pntg` has 7 levels: A = Austrian, D/FL = Dutch/Flemish, F = French, G = German, I = Italian,
+S = Spanish, X = Unknown]
 
 - When the categorical explanatory variable has many levels, they're encoded to
 **dummy variables**.
-- Each coefficient describes the expected difference between heights in that 
-particular school compared to the baseline level.
-
----
-
-## Categorical predictor with >2 levels
 
 ```{r echo=FALSE}
 pp %>% 
@@ -615,6 +607,20 @@ pp %>%
     X    = as.integer(ifelse(school_pntg == "X", 1L, 0))
   )
 ```
+
+---
+
+## Relationship between height and school
+
+.small[
+```{r}
+m_ht_sch <- lm(Height_in ~ school_pntg, data = pp)
+tidy(m_ht_sch)
+```
+]
+
+- Each coefficient describes the expected difference between heights in that 
+particular school compared to the baseline level.
 
 ---
 
