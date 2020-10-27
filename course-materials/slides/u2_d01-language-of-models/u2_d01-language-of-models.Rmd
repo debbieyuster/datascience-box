@@ -568,7 +568,7 @@ $$\widehat{Height_{in}} = 22.68 - 5.65~landsALL$$
 --
 
 - **Slope:** Paintings with landscape features are expected, on average,
-to be 5.65 inches shorter than paintings that without landscape features.
+to be 5.65 inches shorter than paintings without landscape features.
     - Compares baseline level (`landsALL = 0`) to other level
     (`landsALL = 1`).
 - **Intercept:** Paintings that don't have landscape features are expected, on 
