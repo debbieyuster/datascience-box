@@ -2,11 +2,11 @@
 title: "PROJECT TITLE"
 author: "NAME HERE"
 date: "TODAY'S DATE"
-output: github_document
+output: pdf_document
 ---
 
 ## Section 1. Introduction
 
-## Section 2. Data analysis plan
+## Section 2. Data description
 
-## Section 3. Data
+## Section 3. Glimpse of data

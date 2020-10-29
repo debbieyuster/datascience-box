@@ -37,7 +37,7 @@ Choose the data based on your group's interests or work you have done in other c
 
 You will work on the project with your lab groups.
 
-The four primary deliverables for the final project are
+The five primary deliverables for the final project are
 
 - A project proposal
 - A written, reproducible report detailing your analysis
@@ -133,7 +133,7 @@ In this section, you will describe the data set you wish to explore. This includ
 
 Use the `glimpse` function print a summary of the data at the end of your proposal.
 
-Place your data in the `/data` folder of the repo. Later on you will include the codebook in the README of the data folder. 
+Place your data in the `/data` folder of the repo. Later on you will include the codebook in the README of the repo. 
 
 ### Submission
 
