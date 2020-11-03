@@ -1,8 +1,5 @@
 base
 methods
-usethis
-devtools
-testthat
 datasets
 utils
 grDevices
