@@ -214,6 +214,8 @@ as_tibble(allbacks)
 ```
 ]
 
+**Goal**: Predict a book's weight as a function of its volume and cover type.
+
 .footnote[
 The bookshelf of J. H. Maindonald at Australian National University.
 ]
