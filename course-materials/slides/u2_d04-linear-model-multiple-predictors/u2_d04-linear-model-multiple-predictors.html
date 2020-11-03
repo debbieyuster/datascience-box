@@ -484,7 +484,7 @@ tidy(m_main) %&gt;%
 ```
 ]
 
-- All else held constant, for each additional square inch in painting's surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.
+- All else held constant, for each additional square inch in painting's surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.000265 (= `\(e^{0.000265}\)`).
 - All else held constant, paintings by a living artist are predicted, on average, to be higher by a factor of 1.15 compared to paintings by an artist who is no longer alive.
 - Paintings that are by an artist who is not alive and that have a surface area of 0 square inches are predicted, on average, to be 132 livres.
 
@@ -505,7 +505,7 @@ Why is our linear regression model different from what we got from `geom_smooth(
 
 ---
 
-## What went ~wrong~ differently?
+## Why the discrepancy?
 
 - The way we specified our model only lets `artistliving` affect the intercept.
 - Model implicitly assumes that paintings with living and deceased artists have the *same slope* and only allows for *different intercepts*.  
@@ -513,8 +513,8 @@ Why is our linear regression model different from what we got from `geom_smooth(
 .question[
 What seems more appropriate in this case?
 + Same slope and same intercept for both colors
-+ Same slope and different intercept for both colors
-+ Different slope and different intercept for both colors
++ Same slope and different intercept for each color
++ Different slope and different intercept for each color
 ]
 
 ---
