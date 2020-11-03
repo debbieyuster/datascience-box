@@ -542,8 +542,7 @@ their interaction
 
 .midi[
 ```{r model-interaction-effects}
-m_int <- lm(log_price ~ Surface + artistliving + 
-              Surface * artistliving, 
+m_int <- lm(log_price ~ Surface + artistliving + Surface * artistliving, 
             data = pp_Surf_lt_5000)
 tidy(m_int)
 ```

@@ -534,8 +534,7 @@ their interaction
 .midi[
 
 ```r
-m_int &lt;- lm(log_price ~ Surface + artistliving + 
-              Surface * artistliving, 
+m_int &lt;- lm(log_price ~ Surface + artistliving + Surface * artistliving, 
             data = pp_Surf_lt_5000)
 tidy(m_int)
 ```
