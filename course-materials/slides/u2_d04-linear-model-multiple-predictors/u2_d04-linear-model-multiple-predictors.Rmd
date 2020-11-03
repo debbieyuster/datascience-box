@@ -55,7 +55,7 @@ pp <-pp %>%
 
 ## Multiple predictors
 
-- Response variable: `log_price` = log_price
+- Response variable: `log_price` = log(price)
 - Explanatory variables: Width and height
 
 ```{r model-price-width-height}
