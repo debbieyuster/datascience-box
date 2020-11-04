@@ -85,7 +85,7 @@ in your RStudio Cloud project.
 knitr::include_graphics("img/data-upload.png")
 ```
 
-- Click [here](https://introds.org/data/evals-mod.csv) to download the data. The file is called `evals-mod.csv`.
+- Click [here](https://debbieyuster.github.io/datascience-box/course-materials/data/evals-mod.csv) to download the data. The file is called `evals-mod.csv`.
 - Navigate to the data folder in your project and upload the `evals-mod.csv` file.
 
 Then, you can load the data as usual using the following.
