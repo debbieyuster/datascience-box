@@ -1,0 +1,199 @@
+---
+title: "Lab 09 - Modeling course evaluations, Pt. 1"
+subtitle: "Single predictor"
+output: 
+  tufte::tufte_html:
+    css: ../lab.css
+    tufte_variant: "envisioned"
+    highlight: pygments
+link-citations: yes
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+---
+
+Learning goals:
+
++ Calculate row-level summaries within a data frame  
++ Fit simple linear regression models  
++ Interpret simple linear regression models  
++ Visualize simple linear regression models
+
+Many college courses conclude by giving students the opportunity to evaluate 
+the course and instructor anonymously. However, the use of these student 
+evaluations as an indicator of course quality and teaching effectiveness is 
+often criticized because these measures may reflect the influence of non-teaching 
+related characteristics, such as the physical appearance of the instructor. 
+
+The article titled, "Beauty in the classroom: instructors’ pulchritude and putative 
+pedagogical productivity" (Hamermesh and Parker, 2005) found that instructors 
+who are viewed to be better looking receive higher instructional ratings.^[Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005, Pages 369-376, ISSN 0272-7757, 10.1016/j.econedurev.2004.07.013. http://www.sciencedirect.com/science/article/pii/S0272775704001165.]
+
+The data were gathered from end of semester student evaluations for a large 
+sample of professors from the University of Texas at Austin. In addition, six 
+students rated the professors’ physical appearance.^[This is a slightly modified 
+version of the original data set that was released as part of the replication 
+data for Data Analysis Using Regression and Multilevel/Hierarchical Models 
+(Gelman and Hill, 2007).] The result is a data frame where each observation (row) represents 
+a different course and each variable (column) contains information about the course or professor.
+
+The variables in the data and their descriptions are as follows:
+  
+| Variable name    | Description 
+|:--------|:-------------------------------
+| `score` 		     | Average professor evaluation score: (1) very unsatisfactory - (5) excellent
+| `rank` 		       | Rank of professor: teaching, tenure track, tenure
+| `ethnicity` 	   | Ethnicity of professor: not minority, minority
+| `gender` 		     | Gender of professor: female, male
+| `language` 	     | Language of school where professor received education: english, non-english
+| `age` 		       | Age of professor
+| `cls_perc_eval`  | Percent of students in class who completed evaluation
+| `cls_did_eval`   | Number of students in class who completed evaluation
+| `cls_students`   | Total number of students in class
+| `cls_level` 	   | Class level: lower, upper
+| `cls_profs` 	   | Number of professors teaching sections in course in sample: single, multiple
+| `cls_credits`    | Number of credits of class: one credit (lab, PE, etc.), multi credit
+| `bty_f1lower`    | Beauty rating of professor given by lower level female: (1) lowest - (10) highest
+| `bty_f1upper`    | Beauty rating of professor given by upper level female: (1) lowest - (10) highest
+| `bty_f2upper`    | Beauty rating of professor given by upper level female: (1) lowest - (10) highest
+| `bty_m1lower`    | Beauty rating of professor given by lower level male: (1) lowest - (10) highest
+| `bty_m1upper`    | Beauty rating of professor given by upper level male: (1) lowest - (10) highest
+| `bty_m2upper`    | Beauty rating of professor given by upper level male: (1) lowest - (10) highest
+
+In this lab, you will analyze the data from this study in order to 
+start exploring what goes into a positive professor evaluation.
+
+# Getting started
+
+## Clone your repo
+
+Go to the course GitHub organization and locate your lab repo, which should be named `lab-09-modeling-course-evals-YOUR_TEAMNAME`. Grab the URL of the repo, and clone it in our RStudio Cloud **course workspace**.
+
+As you work, be sure to take turns with your groupmates. Only one person should type at a time (and should share their screen while typing). When that person is done, they should Knit, Commit, and Push their changes to GitHub. Then, everyone else should Pull the changes, and the next group member should take over typing and screen sharing.
+
+Hopefully no merge conflicts will arise. If they do, take a deep breath, and resolve them. Ask for help if you need it. Importantly, if you encounter a merge conflict, everyone should stop what they're doing - don't continue working on the lab until the merge conflict is resolved, and everyone has Pulled the resolved files.
+
+## Download the data
+
+In this lab you will first download the data, then upload it to the `data/` folder 
+in your RStudio Cloud project.
+
+```{r data-upload, fig.margin = TRUE, echo = FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("img/data-upload.png")
+```
+
+- Click [here](https://introds.org/data/evals-mod.csv) to download the data. The file is called `evals-mod.csv`.
+- Navigate to the data folder in your project and upload the `evals-mod.csv` file.
+
+Then, you can load the data as usual using the following.
+
+```{r data-show, eval=FALSE}
+evals <- read_csv("data/evals-mod.csv")
+```
+
+## Load packages
+
+We will use the following packages in this analysis:
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(broom)
+```
+
+
+# Part 1: Data Manipulation 
+
+1.  Create a new variable called `bty_avg` that is the average attractiveness
+    score of the professor, as given by the six students (`bty_f1lower` through 
+    `bty_m2upper`). Add this new variable to the `evals` data frame. Do this in 
+    one pipe, using the `rowMeans()` function within a `mutate()`:
+
+```{r eval=FALSE}
+evals <- evals %>% 
+  mutate(bty_avg = rowMeans(select(., bty_f1lower:bty_m2upper)))
+```
+
+Let's pause for a second to see what is happening in this piece of code. 
+We are mutating the `evals` data frame by adding a new variable, `bty_avg`, 
+that is calculated as the mean of the columns titled `bty_f1lower` through 
+`bty_m2upper` in the `evals` data frame (denoted with a `.` here - discuss *why* with your groupmates).
+
+# Part 2: Exploratory Data Analysis
+
+2.  Visualize the distribution of `score`. Is the distribution skewed? What does 
+that tell you about how students rate courses? Is this what you expected to 
+see? Why, or why not? Include any summary statistics and visualizations
+you use in your response.
+
+3.  Visualize and describe the relationship between `score` and the new variable 
+you created, `bty_avg`.
+
+```{marginfigure}
+**Hint:** See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.
+```
+
+4.  Replot the scatterplot from Exercise 3, but this time use `geom_jitter()`. 
+  What does "jitter" mean? What was misleading about the initial scatterplot?
+  
+# Part 3: Linear regression with a numerical predictor
+  
+```{marginfigure}
+Linear model should have the form $\hat{y} = b_0 + b_1 x$.
+```
+
+5.  Let's see if the apparent trend in the plot is something more than
+    natural variation. Fit a linear model called `m_bty` to predict average
+    professor evaluation `score` by average beauty rating (`bty_avg`). Based on the 
+    regression output, which you can obtain with `tidy(m_bty)`, write the linear model.
+    
+    To display the formula nicely in your knitted report, enclose the formula with dollar signs.
+    For example, the rendered formula $\hat{y} = b_0 + b_1 x$ is typed in markdown as:
+    
+    `$\hat{y} = b_0 + b_1 x$`
+    
+6.  Replot your visualization from Exercise 3, and add the regression line, with color orange, to this plot. Turn off the shading for the uncertainty of the line.
+    
+7.  Interpret the slope of the linear model in context of the data.
+
+8.  Interpret the intercept of the linear model in context of the data. Comment 
+    on whether or not the intercept makes sense in this context.
+
+```{marginfigure}
+Refer back to last week's readings and videos if you don't remember what $R^2$ means.
+```
+
+9.  Determine the $R^2$ of the model and interpret it in context of the data. 
+    You can obtain this value with `glance(m_bty)`.
+
+# Part 4: Linear regression with a categorical predictor
+
+10. Fit a new linear model called `m_gen` to predict average professor evaluation `score` 
+    based on `gender` of the professor. Based on the regression output, write the linear 
+    model and interpret the slope and intercept in context of the data.
+    
+11. What is the equation of the regression line corresponding to male professors?
+    What is it for female professors? (As above, typeset your equations using dollar signs.)
+    
+12. Fit a new linear model called `m_rank` to predict average professor evaluation `score` 
+    based on the `rank` of the professor. Based on the regression output, write the linear 
+    model and interpret the coefficients and intercept in the context of the data.
+    
+```{marginfigure}
+Refer back to the [Factors reading](https://r4ds.had.co.nz/factors.html) or [forcats package](http://forcats.tidyverse.org/) documentation to create a factor with specified levels.
+```
+
+13. Add a new variable called `rank_leveled` which is `rank` encoded as a factor with `"tenure track"` as the baseline level. 
+
+14. Fit a new linear model called `m_rank_leveled` to predict average professor evaluation 
+    `score` based on `rank_leveled` of the professor. Based on the regression output, write the linear model and interpret the coefficients and intercept in the context of the data. Also determine and interpret the $R^2$ of the model.
+    
+## Wrapping up and Submission
+
+Make any final changes, and be sure you've followed code style guidelines. Knit, commit, and push any remaining changes to GitHub.
+
+To submit, one team member should upload the team's PDF to Gradescope. **Be sure to select every team member's name in the Gradescope submission**. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. **If any answer spans multiple pages, then mark each of the relevant pages**. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not participated sufficiently may receive a lower grade than the rest of the group.
+
+There should only be **one** submission per team on Gradescope. 

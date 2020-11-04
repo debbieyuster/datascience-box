@@ -8,7 +8,7 @@ The variables in the data and their descriptions are as follows:
 | `rank` 		       | Rank of professor: teaching, tenure track, tenure
 | `ethnicity` 	   | Ethnicity of professor: not minority, minority
 | `gender` 		     | Gender of professor: female, male
-| `language` 	     | Language of school where professor received education: english or non-english
+| `language` 	     | Language of school where professor received education: english, non-english
 | `age` 		       | Age of professor
 | `cls_perc_eval`  | Percent of students in class who completed evaluation
 | `cls_did_eval`   | Number of students in class who completed evaluation
