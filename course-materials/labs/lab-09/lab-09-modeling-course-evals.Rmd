@@ -70,11 +70,20 @@ start exploring what goes into a positive professor evaluation.
 
 ## Clone your repo
 
-Go to the course GitHub organization and locate your lab repo, which should be named `lab-09-modeling-course-evals-YOUR_TEAMNAME`. Grab the URL of the repo, and clone it in our RStudio Cloud **course workspace**.
+Go to the course GitHub organization and locate your lab repo, which should be named `lab-09-model-course-evals-YOUR_TEAMNAME`. Grab the URL of the repo, and clone it in our RStudio Cloud **course workspace**.
 
 As you work, be sure to take turns with your groupmates. Only one person should type at a time (and should share their screen while typing). When that person is done, they should Knit, Commit, and Push their changes to GitHub. Then, everyone else should Pull the changes, and the next group member should take over typing and screen sharing.
 
 Hopefully no merge conflicts will arise. If they do, take a deep breath, and resolve them. Ask for help if you need it. Importantly, if you encounter a merge conflict, everyone should stop what they're doing - don't continue working on the lab until the merge conflict is resolved, and everyone has Pulled the resolved files.
+
+## Load packages
+
+We will use the following packages in this analysis:
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(broom)
+```
 
 ## Download the data
 
@@ -93,16 +102,6 @@ Then, you can load the data as usual using the following.
 ```{r data-show, eval=FALSE}
 evals <- read_csv("data/evals-mod.csv")
 ```
-
-## Load packages
-
-We will use the following packages in this analysis:
-
-```{r load-packages, message = FALSE}
-library(tidyverse)
-library(broom)
-```
-
 
 # Part 1: Data Manipulation 
 
@@ -123,20 +122,18 @@ that is calculated as the mean of the columns titled `bty_f1lower` through
 
 # Part 2: Exploratory Data Analysis
 
-2.  Visualize the distribution of `score`. Is the distribution skewed? What does 
+2.  Visualize the distribution of `score`. As always, don't forget to title and label your plot appropriately. Is the distribution skewed? What does 
 that tell you about how students rate courses? Is this what you expected to 
-see? Why, or why not? Include any summary statistics and visualizations
-you use in your response.
+see? Why or why not? 
 
-3.  Visualize and describe the relationship between `score` and the new variable 
-you created, `bty_avg`.
+3.  Visualize and describe the relationship between `score` (as the dependent variable) and the new variable you created, `bty_avg` (as the independent variable).
 
 ```{marginfigure}
 **Hint:** See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.
 ```
 
 4.  Replot the scatterplot from Exercise 3, but this time use `geom_jitter()`. 
-  What does "jitter" mean? What was misleading about the initial scatterplot?
+  What is the advantage of this plot over the previous one? What was misleading about the initial scatterplot?
   
 # Part 3: Linear regression with a numerical predictor
   
@@ -149,33 +146,36 @@ Linear model should have the form $\hat{y} = b_0 + b_1 x$.
     professor evaluation `score` by average beauty rating (`bty_avg`). Based on the 
     regression output, which you can obtain with `tidy(m_bty)`, write the linear model.
     
-    To display the formula nicely in your knitted report, enclose the formula with dollar signs.
+    If you'd like to display the formula nicely in your knitted report, enclose the formula with **dollar signs**. This type of syntax is called [LaTeX](https://www.latex-project.org/) (pronounced either "LAY-tek" or "lah-TEK") and is used widely for typesetting mathematical and scientific documents.
     For example, the rendered formula $\hat{y} = b_0 + b_1 x$ is typed in markdown as:
     
     `$\hat{y} = b_0 + b_1 x$`
     
+    Send me a Google Chat message if you want help with this.
+    
 6.  Replot your visualization from Exercise 3, and add the regression line, with color orange, to this plot. Turn off the shading for the uncertainty of the line.
     
-7.  Interpret the slope of the linear model in context of the data.
+7.  Interpret the slope of the linear model in the context of the data.
 
-8.  Interpret the intercept of the linear model in context of the data. Comment 
+8.  Interpret the intercept of the linear model in the context of the data. Comment 
     on whether or not the intercept makes sense in this context.
 
 ```{marginfigure}
-Refer back to last week's readings and videos if you don't remember what $R^2$ means.
+Refer back to last week's readings and videos if you don't remember what $R^2$ 
+  means. $R^2$ is also referred to as the **coefficient of determination**.
 ```
 
-9.  Determine the $R^2$ of the model and interpret it in context of the data. 
-    You can obtain this value with `glance(m_bty)`.
+9.  State the coefficient of determination, $R^2$, of the model and interpret it in the context of the data. 
+    You can obtain this value with `glance(m_bty)`. You can typeset $R^2$ in your narrative by typing   `$R^2$`.
 
 # Part 4: Linear regression with a categorical predictor
 
 10. Fit a new linear model called `m_gen` to predict average professor evaluation `score` 
     based on `gender` of the professor. Based on the regression output, write the linear 
-    model and interpret the slope and intercept in context of the data.
+    model and interpret the slope and intercept in the context of the data.
     
 11. What is the equation of the regression line corresponding to male professors?
-    What is it for female professors? (As above, typeset your equations using dollar signs.)
+    What is it for female professors?
     
 12. Fit a new linear model called `m_rank` to predict average professor evaluation `score` 
     based on the `rank` of the professor. Based on the regression output, write the linear 
@@ -185,10 +185,10 @@ Refer back to last week's readings and videos if you don't remember what $R^2$ m
 Refer back to the [Factors reading](https://r4ds.had.co.nz/factors.html) or [forcats package](http://forcats.tidyverse.org/) documentation to create a factor with specified levels.
 ```
 
-13. Add a new variable called `rank_leveled` which is `rank` encoded as a factor with `"tenure track"` as the baseline level. 
+13. Add a new variable called `rank_leveled` which is `rank` encoded as a factor with `"tenure track"` as the baseline level, followed by `"teaching"`, followed by `"tenured"`. 
 
 14. Fit a new linear model called `m_rank_leveled` to predict average professor evaluation 
-    `score` based on `rank_leveled` of the professor. Based on the regression output, write the linear model and interpret the coefficients and intercept in the context of the data. Also determine and interpret the $R^2$ of the model.
+    `score` based on `rank_leveled` of the professor. Based on the regression output, write the linear model. Will this model produce the same predictions as the model you fitted in Exercise 12? Explain. Also, determine and interpret the $R^2$ of the model.
     
 ## Wrapping up and Submission
 

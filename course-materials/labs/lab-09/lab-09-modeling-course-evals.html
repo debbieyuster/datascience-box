@@ -575,9 +575,15 @@ counter-reset: subitem;
 <h1>Getting started</h1>
 <div id="clone-your-repo" class="section level2">
 <h2>Clone your repo</h2>
-<p>Go to the course GitHub organization and locate your lab repo, which should be named <code>lab-09-modeling-course-evals-YOUR_TEAMNAME</code>. Grab the URL of the repo, and clone it in our RStudio Cloud <strong>course workspace</strong>.</p>
+<p>Go to the course GitHub organization and locate your lab repo, which should be named <code>lab-09-model-course-evals-YOUR_TEAMNAME</code>. Grab the URL of the repo, and clone it in our RStudio Cloud <strong>course workspace</strong>.</p>
 <p>As you work, be sure to take turns with your groupmates. Only one person should type at a time (and should share their screen while typing). When that person is done, they should Knit, Commit, and Push their changes to GitHub. Then, everyone else should Pull the changes, and the next group member should take over typing and screen sharing.</p>
 <p>Hopefully no merge conflicts will arise. If they do, take a deep breath, and resolve them. Ask for help if you need it. Importantly, if you encounter a merge conflict, everyone should stop what they’re doing - don’t continue working on the lab until the merge conflict is resolved, and everyone has Pulled the resolved files.</p>
+</div>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<p>We will use the following packages in this analysis:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(broom)</span></code></pre></div>
 </div>
 <div id="download-the-data" class="section level2">
 <h2>Download the data</h2>
@@ -592,13 +598,7 @@ counter-reset: subitem;
 <li>Navigate to the data folder in your project and upload the <code>evals-mod.csv</code> file.</li>
 </ul>
 <p>Then, you can load the data as usual using the following.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>evals &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/evals-mod.csv&quot;</span>)</span></code></pre></div>
-</div>
-<div id="load-packages" class="section level2">
-<h2>Load packages</h2>
-<p>We will use the following packages in this analysis:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>evals &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/evals-mod.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="part-1-data-manipulation" class="section level1">
@@ -613,12 +613,12 @@ counter-reset: subitem;
 <div id="part-2-exploratory-data-analysis" class="section level1">
 <h1>Part 2: Exploratory Data Analysis</h1>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Visualize the distribution of <code>score</code>. Is the distribution skewed? What does that tell you about how students rate courses? Is this what you expected to see? Why, or why not? Include any summary statistics and visualizations you use in your response.</p></li>
-<li><p>Visualize and describe the relationship between <code>score</code> and the new variable you created, <code>bty_avg</code>.</p></li>
+<li><p>Visualize the distribution of <code>score</code>. As always, don’t forget to title and label your plot appropriately. Is the distribution skewed? What does that tell you about how students rate courses? Is this what you expected to see? Why or why not?</p></li>
+<li><p>Visualize and describe the relationship between <code>score</code> (as the dependent variable) and the new variable you created, <code>bty_avg</code> (as the independent variable).</p></li>
 </ol>
 <p><label for="tufte-mn-1" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-1" class="margin-toggle"><span class="marginnote"><span style="display: block;"><strong>Hint:</strong> See the help page for the function at <a href="http://ggplot2.tidyverse.org/reference/index.html" class="uri">http://ggplot2.tidyverse.org/reference/index.html</a>.</span></span></p>
 <ol start="4" style="list-style-type: decimal">
-<li>Replot the scatterplot from Exercise 3, but this time use <code>geom_jitter()</code>. What does “jitter” mean? What was misleading about the initial scatterplot?</li>
+<li>Replot the scatterplot from Exercise 3, but this time use <code>geom_jitter()</code>. What is the advantage of this plot over the previous one? What was misleading about the initial scatterplot?</li>
 </ol>
 </div>
 <div id="part-3-linear-regression-with-a-numerical-predictor" class="section level1">
@@ -626,28 +626,29 @@ counter-reset: subitem;
 <p><label for="tufte-mn-2" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-2" class="margin-toggle"><span class="marginnote"><span style="display: block;">Linear model should have the form <span class="math inline"><span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span></span>.</span></span></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Let’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called <code>m_bty</code> to predict average professor evaluation <code>score</code> by average beauty rating (<code>bty_avg</code>). Based on the regression output, which you can obtain with <code>tidy(m_bty)</code>, write the linear model.</p>
-<p>To display the formula nicely in your knitted report, enclose the formula with dollar signs. For example, the rendered formula <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> is typed in markdown as:</p>
-<p><code>$\hat{y} = b_0 + b_1 x$</code></p></li>
+<p>If you’d like to display the formula nicely in your knitted report, enclose the formula with <strong>dollar signs</strong>. This type of syntax is called <a href="https://www.latex-project.org/">LaTeX</a> (pronounced either “LAY-tek” or “lah-TEK”) and is used widely for typesetting mathematical and scientific documents. For example, the rendered formula <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> is typed in markdown as:</p>
+<p><code>$\hat{y} = b_0 + b_1 x$</code></p>
+<p>Send me a Google Chat message if you want help with this.</p></li>
 <li><p>Replot your visualization from Exercise 3, and add the regression line, with color orange, to this plot. Turn off the shading for the uncertainty of the line.</p></li>
-<li><p>Interpret the slope of the linear model in context of the data.</p></li>
-<li><p>Interpret the intercept of the linear model in context of the data. Comment on whether or not the intercept makes sense in this context.</p></li>
+<li><p>Interpret the slope of the linear model in the context of the data.</p></li>
+<li><p>Interpret the intercept of the linear model in the context of the data. Comment on whether or not the intercept makes sense in this context.</p></li>
 </ol>
-<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;">Refer back to last week’s readings and videos if you don’t remember what <span class="math inline"><span class="math inline">\(R^2\)</span></span> means.</span></span></p>
+<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;">Refer back to last week’s readings and videos if you don’t remember what <span class="math inline"><span class="math inline">\(R^2\)</span></span> means. <span class="math inline"><span class="math inline">\(R^2\)</span></span> is also referred to as the <strong>coefficient of determination</strong>.</span></span></p>
 <ol start="9" style="list-style-type: decimal">
-<li>Determine the <span class="math inline">\(R^2\)</span> of the model and interpret it in context of the data. You can obtain this value with <code>glance(m_bty)</code>.</li>
+<li>State the coefficient of determination, <span class="math inline">\(R^2\)</span>, of the model and interpret it in the context of the data. You can obtain this value with <code>glance(m_bty)</code>. You can typeset <span class="math inline">\(R^2\)</span> in your narrative by typing <code>$R^2$</code>.</li>
 </ol>
 </div>
 <div id="part-4-linear-regression-with-a-categorical-predictor" class="section level1">
 <h1>Part 4: Linear regression with a categorical predictor</h1>
 <ol start="10" style="list-style-type: decimal">
-<li><p>Fit a new linear model called <code>m_gen</code> to predict average professor evaluation <code>score</code> based on <code>gender</code> of the professor. Based on the regression output, write the linear model and interpret the slope and intercept in context of the data.</p></li>
-<li><p>What is the equation of the regression line corresponding to male professors? What is it for female professors? (As above, typeset your equations using dollar signs.)</p></li>
+<li><p>Fit a new linear model called <code>m_gen</code> to predict average professor evaluation <code>score</code> based on <code>gender</code> of the professor. Based on the regression output, write the linear model and interpret the slope and intercept in the context of the data.</p></li>
+<li><p>What is the equation of the regression line corresponding to male professors? What is it for female professors?</p></li>
 <li><p>Fit a new linear model called <code>m_rank</code> to predict average professor evaluation <code>score</code> based on the <code>rank</code> of the professor. Based on the regression output, write the linear model and interpret the coefficients and intercept in the context of the data.</p></li>
 </ol>
 <p><label for="tufte-mn-4" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-4" class="margin-toggle"><span class="marginnote"><span style="display: block;">Refer back to the <a href="https://r4ds.had.co.nz/factors.html">Factors reading</a> or <a href="http://forcats.tidyverse.org/">forcats package</a> documentation to create a factor with specified levels.</span></span></p>
 <ol start="13" style="list-style-type: decimal">
-<li><p>Add a new variable called <code>rank_leveled</code> which is <code>rank</code> encoded as a factor with <code>&quot;tenure track&quot;</code> as the baseline level.</p></li>
-<li><p>Fit a new linear model called <code>m_rank_leveled</code> to predict average professor evaluation <code>score</code> based on <code>rank_leveled</code> of the professor. Based on the regression output, write the linear model and interpret the coefficients and intercept in the context of the data. Also determine and interpret the <span class="math inline">\(R^2\)</span> of the model.</p></li>
+<li><p>Add a new variable called <code>rank_leveled</code> which is <code>rank</code> encoded as a factor with <code>&quot;tenure track&quot;</code> as the baseline level, followed by <code>&quot;teaching&quot;</code>, followed by <code>&quot;tenured&quot;</code>.</p></li>
+<li><p>Fit a new linear model called <code>m_rank_leveled</code> to predict average professor evaluation <code>score</code> based on <code>rank_leveled</code> of the professor. Based on the regression output, write the linear model. Will this model produce the same predictions as the model you fitted in Exercise 12? Explain. Also, determine and interpret the <span class="math inline">\(R^2\)</span> of the model.</p></li>
 </ol>
 <div id="wrapping-up-and-submission" class="section level2">
 <h2>Wrapping up and Submission</h2>
