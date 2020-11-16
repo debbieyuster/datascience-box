@@ -1,0 +1,201 @@
+---
+title: "Bridge to tidymodels"
+author: ""
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(scales)
+library(broom)
+library(here)
+```
+
+
+## Recall: Linear regression with the Paris Paintings dataset
+
+```{r load-pp, message=FALSE}
+pp <- read_csv(
+  "data/paris-paintings.csv", 
+  na = c("n/a", "", "NA")
+  )
+```
+
+--
+
+### Height & width
+
+.small[
+```{r}
+m_ht_wt <- lm(Height_in ~ Width_in, data = pp)
+tidy(m_ht_wt)
+```
+]
+
+$$\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}$$
+
+---
+
+```{r out.width="98%", echo=FALSE}
+knitr::include_graphics("img/tidymodels.png")
+```
+
+---
+
+## Step 1: Specify model
+
+```{r}
+linear_reg()
+```
+
+---
+
+## Step 2: Set model fitting *engine*
+
+```{r}
+linear_reg() %>%
+  set_engine("lm") # lm: linear model
+```
+
+---
+
+## Step 3: Fit model & estimate parameters
+
+... using **formula syntax**
+
+```{r fit-model}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+```
+
+---
+
+## A closer look at model output
+
+```{r ref.label="fit-model", echo=FALSE}
+```
+
+.large[
+$$\widehat{height\_{in}} = 3.6214 + 0.7808 \times width\_{in}$$
+]
+
+---
+
+## A tidy look at model output
+
+```{r}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+
+.large[
+$$\widehat{height\_{in}} = 3.62 + 0.781 \times width\_{in}$$
+]
+
+---
+
+## Side-by-side comparison: Fitting the linear model
+
+.pull-left[
+.small[
+Base R:
+```{r lm-syntax, eval = FALSE}
+lm(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+]]
+
+.pull-right[
+.small[
+tidymodels:
+```{r, eval = FALSE}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+]]
+
+```{r lm-syntax, echo = FALSE, eval = TRUE}
+```
+
+---
+
+class: middle
+
+# Syntax comparison:
+## Using the `broom` functions
+
+---
+
+## Review: Tidy regression output
+
+Achieved with functions from the `broom` package:
+
+- `tidy`: Constructs a data frame that summarizes the model's statistical findings: coefficient estimates, *standard errors, test statistics, p-values*.
+- `glance`: Constructs a concise one-row summary of the model. This typically contains values such as $R^2$, adjusted $R^2$, *and residual standard errors that are computed once for the entire model*.
+- `augment`: Adds columns to the original data that was modeled. This includes predictions and residuals.
+
+---
+
+## Side-by-side comparison: Using augment()
+
+.pull-left[
+.small[
+Base R model + augment():
+```{r aug-syntax, eval = FALSE}
+m_ht_wt <- lm(Height_in ~ Width_in, data = pp)
+m_ht_wt_aug <- augment(m_ht_wt)
+m_ht_wt_aug
+```
+]]
+
+.pull-right[
+.small[
+tidymodels model + augment():
+```{r, eval = FALSE}
+tidy_ht_wt <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+tidy_ht_wt_aug <- augment(tidy_ht_wt$fit)
+tidy_ht_wt_aug
+```
+]]
+
+```{r aug-syntax, echo = FALSE, eval = TRUE}
+```
+
+---
+
+## Comparison: glance() uses same syntax!
+
+.pull-left[
+.small[
+Base R model + glance():
+```{r glance-syntax, eval = TRUE}
+glance(m_ht_wt)$r.squared
+```
+]]
+
+.pull-right[
+.small[
+tidymodels model + glance():
+```{r, eval = TRUE}
+glance(tidy_ht_wt)$r.squared
+```
+]]
