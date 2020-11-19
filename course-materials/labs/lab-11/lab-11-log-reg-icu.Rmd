@@ -1,0 +1,188 @@
+---
+title: "Lab 11 - Predicting Survival in the ICU"
+subtitle: "Using logistic regression"
+output: 
+  tufte::tufte_html:
+    css: ../lab.css
+    tufte_variant: "envisioned"
+    highlight: pygments
+link-citations: yes
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+---
+
+Learning goals:
+
++ Fit logistic regression models using tidymodels
++ Interpret logistic regression models
++ Generate predictions from a logistic regression model
++ Use holdout data to assess model performance
++ Analyze the tradeoffs inherent in threshold selection, using ROC curves and confusion matrices
+
+# Intensive Care Unit
+
+The Intensive Care Unit (ICU) is the specialized unit of a hospital that focuses
+on extremely severe and life-threatening medical issues (septic shock, organ 
+failure, major trauma, etc). Patients admitted to the ICU require constant 
+care and monitoring by highly-trained medical professionals and the use of 
+advanced equipment.
+
+Researchers are interested in the survival of patients admitted to the ICU. 
+Patients with a low predicted probability of survival can be triaged to more 
+medical resources and care, and patients with a high predicted probability of 
+survival can be triaged to another unit of the hospital. 
+
+The file `icu.csv` contains information for a random sample of 200 patients from 
+an Intensive Care Unit. Researchers are interested in predicting patient 
+survival. This data is from the [Data and Story Library (DASL)](http://lib.stat.cmu.edu/DASL/).
+
+- `id`: Patient ID code
+- `survive`: Survival status (0 = patient died, 1 = patient survived to 
+discharge)
+- `age`: Age (years)
+- `sex`: Sex (0 = male, 1 = female)
+- `infection`: Infection status (0 = no infection, 1 = infection suspected)
+- `sysbp`: Systolic blood pressure (mm of Hg)
+- `pulse`: Heart rate (beats per minute)
+- `emergency`: Admission status (0 = elective admission, 1 = emergency 
+admission)
+
+In this lab, you will create a logistic regression model to predict whether an ICU patient will survive to be discharged from the hospital.
+
+# Getting started
+
+## Clone your repo
+
+Go to the course GitHub organization and locate your lab repo, which should be named `lab-11-log-reg-icu-YOUR_TEAMNAME`. Grab the URL of the repo, and clone it in our RStudio Cloud **course workspace**.
+
+As you work, be sure to take turns with your groupmates. Only one person should type at a time (and should share their screen while typing). When that person is done, they should Knit, Commit, and Push their changes to GitHub. Then, everyone else should Pull the changes, and the next group member should take over typing and screen sharing.
+
+Hopefully no merge conflicts will arise. If they do, take a deep breath, and resolve them. Ask for help if you need it. Importantly, if you encounter a merge conflict, everyone should stop what they're doing - don't continue working on the lab until the merge conflict is resolved, and everyone has Pulled the resolved files.
+
+## Load packages
+
+We will use the following packages in this analysis:
+
+```{r load-packages, message = FALSE}
+library(tidyverse) 
+library(tidymodels)
+library(knitr)
+```
+
+## Load the data
+
+Load the data using the following:
+
+```{r data-show, eval=FALSE}
+icu <- read_csv("data/icu.csv")
+```
+
+# Data prep
+
+1. Use the `as_factor()` function to modify `icu` so that the binary variables `survive`, `sex`, `infection`, and `emergency` are treated as factors. Then `glimpse` the data frame to confirm your data types are correct.
+
+# Exploratory Data Analysis (EDA)
+
+1. Create three effective, well-labeled visualizations to explore the 
+relationships between the variables below. Provide a brief one- or two sentence
+comment interpreting each.
+
+    - `age` and `survive`
+    - `emergency` and `survive`
+    - `sysbp` and `survive`
+    
+# Modeling
+
+1. Fill in the code to split the `icu` data frame into training and testing sets, called `train_data` and `test_data`, respectively. The training set should contain 80% of the data. The randomization seed has been set (to 1119, today's date), to ensure you get a consistent "random" split each time you knit the document (and so each lab group is working with the same data split).
+
+
+```{r split-data-d, eval = FALSE}
+# Fix random numbers by setting the seed 
+# Enables analysis to be reproducible when random numbers are used 
+set.seed(1119)
+# Put 80% of the data into the training set 
+icu_split <- initial_split(icu, prop = _____)
+# Create data frames for the two sets:
+train_data <- _____(icu_split)
+test_data  <- _____(icu_split)
+```
+
+1. Fill in the code below to fit a logistic regression model on `train_data` with `survive` as the response variable, using the predictors `age`, `sysbp` and `emergency`. Call the model `icu_fit` and report the model output in tidy format.
+
+```{r fit-model-d, eval = FALSE}
+icu_fit <- _____ %>%
+  set_engine(_____) %>%
+  fit(_____ ~ _____, data = train_data, family = _____)
+_____(icu_fit)
+```
+
+1. Write the equation of the fitted logistic regression model. The left hand side of your equation should be the expression for "log odds", $\log\frac{p}{1-p}$, which you can typeset using `$\log\frac{p}{1-p}$`. Type the rest of the formula within the dollar signs.
+
+1. An 85 year old patient is admitted in an emergency situation with a systolic blood pressure of 90 mm of Hg. Find the patient's predicted log-odds of survival. Tip: Recall you can use inline code to have R function as a calculator. For example, if you wanted to compute 2 + 2, you could write the inline code `` `r
+2 + 2` `` and the knitted output would be 4.
+
+1. Use your answer from the previous question to find the patient's predicted probability of survival, $p$. Round the probability to 2 decimal places. Hint: you will need to use the inverse-logit function.
+
+1. The patient described above survived. Is this result surprising? Explain your answer.
+
+1. Run the following code, which uses your logistic regression model to make predictions on your testing data.
+
+```{r pred-test-d, eval = FALSE}
+icu_pred <- predict(icu_fit, test_data, type = "prob") %>%
+  bind_cols(test_data %>% select(survive, id))
+icu_pred
+```
+
+Looking at the first row in the output (copied below), explain the meaning of each of the four numbers in the row.
+
+```
+## # A tibble: 39 x 4
+##   .pred_0 .pred_1 survive    id
+##     <dbl>   <dbl> <fct>   <dbl>
+## 1   0.150   0.850 1         517
+```
+
+1. Run the following code to produce an ROC curve for your logistic regression model. If you decide to set your threshold at a level that will achieve a true positive rate of 80%, what would your false positive rate be? Explain what these two rates mean ("true positive rate of 80%" as well as the false positive rate) in the context of the problem.
+
+```{r eval = FALSE}
+icu_pred %>%
+  roc_curve(
+    truth = survive,
+    .pred_1,
+    event_level = "second"
+  ) %>%
+  autoplot() +
+  labs(x = "False positive rate",
+       y = "True positive rate",
+       title = "ROC Curve for ICU Survival Prediction",
+       subtitle = "Logistic regression based on age,\nblood pressure, and emergency status")
+```
+
+1. Run the following code to produce a **confusion matrix** using a threshold score of 0.5. This means that for a patient whose future is unknown, our model will predict survival if the probability $p$ coming out of the logistic regression is at least 0.5, and the model will predict death if the $p$ derived from the logistic regression is less than 0.5. Then, create confusion matrices using thresholds of (a) 0.3 and (b) 0.8 (you should copy/paste and modify the given code). Looking at the three confusion matrices, which threshold score would you recommend that the doctors use? Why?
+
+```{r cutoff-d, eval = FALSE}
+# Threshold of 0.5
+cutoff_prob <- 0.5
+icu_pred %>%
+  mutate(
+    survive      = if_else(survive == 1, "Patient survived", "Patient died"),
+    survive_pred = if_else(.pred_1 > cutoff_prob, "Patient predicted to survive",
+                           "Patient predicted to die")
+    ) %>%
+  count(survive_pred, survive) %>%
+  pivot_wider(names_from = survive, values_from = n) %>%
+  kable(col.names = c("", "Patient died", "Patient survived"))
+```
+
+    
+# Wrap up and Submission
+
+Make any final changes, and be sure you've followed code style guidelines. Knit, commit, and push any remaining changes to GitHub.
+
+To submit, one team member should upload the team's PDF to Gradescope. **Be sure to select every team member's name in the Gradescope submission**. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. **If any answer spans multiple pages, then mark each of the relevant pages**. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not participated sufficiently may receive a lower grade than the rest of the group.
+
+There should only be **one** submission per team on Gradescope. 
