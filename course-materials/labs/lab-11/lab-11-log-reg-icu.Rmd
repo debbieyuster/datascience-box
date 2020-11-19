@@ -15,6 +15,10 @@ knitr::opts_chunk$set(eval = TRUE)
 
 ---
 
+```{r fig.margin=TRUE, eval=TRUE, echo=FALSE, fig.cap="Photo by Marcelo Leal on Unsplash"}
+knitr::include_graphics("img/med-pic-unsplash.jpg")
+```
+
 Learning goals:
 
 + Fit logistic regression models using tidymodels
@@ -83,7 +87,11 @@ icu <- read_csv("data/icu.csv")
 
 # Data prep
 
-1. Use the `as_factor()` function to modify `icu` so that the binary variables `survive`, `sex`, `infection`, and `emergency` are treated as factors. Then `glimpse` the data frame to confirm your data types are correct.
+```{marginfigure}
+**Hint:** Use the `as_factor()` function
+```
+
+1. Modify `icu` so that the binary variables `survive`, `sex`, `infection`, and `emergency` are treated as factors. Then `glimpse` the data frame to confirm your data types are correct.
 
 # Exploratory Data Analysis (EDA)
 
@@ -125,7 +133,11 @@ _____(icu_fit)
 1. An 85 year old patient is admitted in an emergency situation with a systolic blood pressure of 90 mm of Hg. Find the patient's predicted log-odds of survival. Tip: Recall you can use inline code to have R function as a calculator. For example, if you wanted to compute 2 + 2, you could write the inline code `` `r
 2 + 2` `` and the knitted output would be 4.
 
-1. Use your answer from the previous question to find the patient's predicted probability of survival, $p$. Round the probability to 2 decimal places. Hint: you will need to use the inverse-logit function.
+```{marginfigure}
+**Hint:** you will need to use the inverse-logit function.
+```
+
+1. Use your answer from the previous question to find the patient's predicted probability of survival, $p$. Round the probability to 2 decimal places.
 
 1. The patient described above survived. Is this result surprising? Explain your answer.
 
@@ -185,4 +197,6 @@ Make any final changes, and be sure you've followed code style guidelines. Knit,
 
 To submit, one team member should upload the team's PDF to Gradescope. **Be sure to select every team member's name in the Gradescope submission**. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. **If any answer spans multiple pages, then mark each of the relevant pages**. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not participated sufficiently may receive a lower grade than the rest of the group.
 
-There should only be **one** submission per team on Gradescope. 
+There should only be **one** submission per team on Gradescope.
+
+*This lab was derived from an activity written by Dr. Robert Eisinger, Duke University.*
