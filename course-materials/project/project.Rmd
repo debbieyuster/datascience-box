@@ -245,9 +245,7 @@ The project is very open ended. For instance, in creating a compelling
 visualization(s) of your data in R, there is no limit on what tools or 
 packages you may use. You do not need to visualize all of the data at once. A single high quality visualization will receive a much higher grade than a large number of poor quality visualizations.
 
-Before you finalize your write up, make sure the printing of code chunks is turned off with the option `echo = FALSE`. In addition to code chunks, ensure all messages are turned off with the options `warning = FALSE` and `echo = FALSE`. 
-
-Finally, pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count, and will spelling and grammar.
+Pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count, as will spelling and grammar.
 
 
 ### Tips
@@ -261,13 +259,142 @@ specific about a piece of code, you're welcome to show that portion.
 - Merge conflicts will 
 happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.
 - Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team  members).
-- All team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in  the assignment works.
+- All team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all the code and techniques work.
+
+### Installing packages
+
+While you are used to *loading* packages using the `library()` function, that will only work for packages that are installed. You may wish to install additional packages for your project. **Notably, the tidymodels packages have not been installed by default and you will need to install them yourself.** To do this, go to the **Console** pane in RStudio and run the following command (substituting the desired package name for `tidymodels` if applicable). This only needs to be done once. After that, you'll be able to load the package through a `library` command in your RMarkdown document.
+
+```{r echo = T, eval = F}
+install.packages("tidymodels")
+```
+
+### Suppress Code, Warnings, & Messages
+
+```{r echo = F, warning = F, message = F}
+library(tidyverse)
+library(knitr)
+library(broom)
+```
+
+- Include the following code in a code chunk at the top of your .Rmd file to suppress all code, warnings, and other messages. Use the code chunk header `{r setup, include = FALSE}` to suppress this setup code. 
+
+```{r echo = T, eval = F}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE, 
+                      message = FALSE)
+```
+
+### Headers
+
+- Use Markdown headers to clearly label each section. Make sure there is a space between the last `#` and the title, so the header renders correctly. For example, `###Section Title` will not render as header, but `### Section Title` will. The number of hashtags corresponds to the header level - fewer hashtags are for more-major headings.
+
+### References 
+
+- Include all references in a section called "References" at the end of the report. 
+- See [this page](http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840) for guidance on proper citation for datasets. If you got your data off the web, make sure to note the retrieval date.
+- Optional: If you'd like to learn about BibTeX, a common citation management format, and how it is used in R Markdown, see [Section 4.5](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html) of the R Markdown Cookbook. This advanced method for citing references is not required, but might interest some of you.
+
+### Resize figures
+
+- You can resize plots and figures, so you have more space for the narrative. 
+    - **To resize individual figures**: Use the code chunk header `{r plot1, fig.height = 3, fig.width = 5}`, replacing `plot1` with a meaningful label and the height and width with values appropriate for your write up.
+    - **To resize all figures**: Include the `fig_width` and `fig_height` options in your YAML header as shown below:
+
+```
+---
+title: "Your Title"
+author: "Team Name + Group Members"
+output: 
+  pdf_document:
+    fig_width: 5
+    fig_height: 3
+---
+```
+ 
+Replace the height and width values with values appropriate for your write up.
+
+### Arranging plots
+
+You can arrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions. The `patchwork` package makes this easy to do. See the documentation and examples [here](https://patchwork.data-imaginist.com/).
+
+### Plot titles and axis labels
+
+Be sure all plot titles and axis labels are visible and easy to read. 
+
+- Use informative titles, *not* variable names, for titles and axis labels.
+- You can use `coord_flip()` to flip the $x$ and $y$ axes on the plot. This is useful if you have a bar plot with an $x$-axis that is difficult to read due to overlapping text. 
+
+`r emo::ji("x")` **NO! The x-axis is hard to read because the names overlap.**
+
+```{r}
+ggplot(data = mpg, aes(x = manufacturer)) +
+  geom_bar()
+```
+
+`r emo::ji("white_check_mark")` **YES! Names are readable**
+
+```{r}
+ggplot(data = mpg, aes(x = manufacturer)) +
+  geom_bar() +
+  coord_flip()
+```
+
+### Make your plots look professional!
+
+Below is an improved version of the above plot:
+
+- Informative title and axis labels
+- Flipped coordinates to make names readable
+- Arranged bars based on count
+- Capitalized manufacturer names
+- (Optional:) Added color - Use a coordinated color scheme throughout paper/presentation
+- (Optional:) Applied a theme - Use same theme throughout paper/presentation
+
+```{r}
+mpg %>%
+  count(manufacturer) %>%
+  mutate(manufacturer = str_to_title(manufacturer)) %>%
+  ggplot(aes(x = fct_reorder(manufacturer,n), y = n)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(x = "Manufacturer", 
+       y = "Count", 
+       title = "The most common manufacturer is Dodge") +
+  theme_bw() 
+```
+
+
+### Tables and model output
+
+- Use the `kable` function from the knitr package to neatly output all tables and model output. This will also ensure all model coefficients are displayed. 
+  - Use the `digits` argument to display only 3 or 4 significant digits. 
+  - Use the `caption` argument to add captions to your table. 
+
+
+```{r model-ex}
+model <- lm(mpg ~ hp, data = mtcars)
+tidy(model) %>%
+  kable(digits = 3)
+```
+
+
+### Guidelines for communicating results 
+
+- **Don't use variable names in your narrative!** Use descriptive terms, so the reader understands your narrative without relying on the codebook.
+  - `r emo::ji("x")` There is a negative linear relationship between mpg and hp.
+  - `r emo::ji("white_check_mark")` There is a negative linear relationship between a car's fuel economy (in miles per gallon) and its horsepower.
+- **Know your audience:** Your report should be written for a general audience who has an understanding of Data Science at the level of DATA 101.
+- **Avoid subject matter jargon:** Don't assume the audience knows all of the specific terminology related to your subject area. If you must use jargon, include a brief definition the first time you introduce a term. 
+- **Tell the "so what":** Your report and presentation should be more than a list of interpretations and technical definitions. Focus on what the results mean, i.e. what you want the audience to know about your topic after reading your report or viewing your presentation. 
+- **Tell a story:** All visualizations, tables, model output, and narrative should be part of a cohesive story.
+- **Use one voice:** Though multiple people are writing the report, it should read as if it's from a single author. At least one team member should read through the entire report before submission to ensure it reads like a cohesive document.
 
 # Grading summary
 
 Grading of the project will take into account the following:
 
-- Content - What is the quality of research and/or policy question and relevancy 
+- Content - What is the quality of the research and/or policy question(s) and relevance 
 of data to those questions?
 - Correctness - Are statistical procedures carried out and explained correctly?
 - Writing and Presentation - What is the quality of the statistical presentation, 
