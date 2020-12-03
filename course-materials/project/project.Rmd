@@ -19,11 +19,11 @@ knitr::include_graphics("img/laptop-3190194_1920.jpg")
 
 Proposal due **Monday, November 2**
 
-Draft report due **Thursday, December 3** 
+Draft report due **Sunday, December 6 at 11:59pm on CANVAS (not Gradescope)** 
 
-Peer feedback due **Thursday, December 10**
+Peer feedback due **Saturday, December 12 at 11:59pm on CANVAS**
 
-Final report, presentation video, slides, repo due **Thursday, December 17**
+Final report, presentation video, slides, repo due **Thursday, December 17 at 10:00am**
 
 Presentation comments [optional extra credit] due **Sunday, December 20**
 
@@ -45,7 +45,7 @@ The five primary deliverables for the final project are
 - Slides + a video presentation
 - Formal peer review on another team's project
 
-## Overall grading
+# Overall grading
 
 The grade breakdown is as follows:
 
@@ -60,7 +60,7 @@ Total                                                   | 115 pts
 
 **<i>Note: No late projects are accepted.</i>**
 
-## Data sources
+# Data sources
 
 In order for you to have the greatest chance of success with this project it is important that you choose a manageable dataset. This means that the data should be readily accessible and large enough that multiple relationships can be explored. Therefore, **your dataset must have at least 50 observations and at least 10 variables (exceptions can be made but you must speak with me first).**
 
@@ -107,7 +107,7 @@ analysis **must be reproducible**. This means that you must create an R Markdown
 document attached to a GitHub repository that will generate your written report
 exactly upon knitting.
 
-## Project proposal 
+# Project proposal 
 
 There are two main purposes of the project proposal:
 
@@ -147,20 +147,17 @@ Total                                                   | 10 pts
 **Data description**                                    | 4 pts
 **Glimpse of data**                                     | 2 pts
 
-## Draft
+# Draft
 
-Your team's Draft report is due **Thursday, December 3**. As you work on the draft, the focus should be on the analysis and less on crafting the final report. **Your draft must include a reasonable attempt at each analysis component - exploratory data analysis, inference or modeling, and drawing initial conclusions.** It does not need to be a final report, but should be a good part of the way there.
+Your team's Draft report is due **Sunday, December 6 on CANVAS (not Gradescope)**. As you work on the draft, the focus should be on the analysis and less on crafting the final report. **Your draft must include a reasonable attempt at each analysis component - exploratory data analysis, inference or modeling, and drawing initial conclusions.** It does not need to be a final report, but should be a good part of the way there.
 
-## Peer feedback
+# Peer feedback
 
-Critically reviewing others' work is a crucial part of the scientific process, and DATA 101 is no exception. You will be assigned another team's Draft Report to review, and another team will review your draft. As part of the review process, your Draft report is due by **Thursday, December 3**. After receiving the report to be peer-reviewed, you will have until **Thursday, December 10** to provide a detailed critique about the written report and data analysis. This feedback is intended to help your classmates create a high quality final project, as well as give you experience 
-reading and constructively critiquing the work of others.
+Critically reviewing others' work is a crucial part of the scientific process, and DATA 101 is no exception. You will be assigned another team's Draft Report to review, and other students will review your draft. As part of the review process, your Draft report is due by **Sunday, December 6**. After receiving the report to be peer-reviewed, you will have until **Saturday, December 12** to provide a detailed critique about the written report and data analysis. The peer feedback will be done in Canvas. This feedback is intended to help your classmates create a high quality final project, as well as give you experience reading and constructively critiquing the work of others.
 
-<!-- During the peer feedback process, you will be provided read-only access to your partner team's GitHub repo. Provide your feedback in the form of GitHub issues to your partner team's GitHub repo.  -->
+Peer feedback will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team's report: the research context and motivation, exploratory data analysis, and any inference, modeling, or conclusions. **Your feedback should be specific and actionable. It should not be a proofreading (though such comments are fine too), but should focus on the content and clarity of the report, and whether it met the project's specifications and goals, as well as your suggestions for improvement.** You'll be able to make annotations at specific locations within the document, as well as write overall feedback in the sidebar. You are expected to do both. Each student will be graded (out of 15 points) on the quality of the feedback they provided.
 
-Peer feedback will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team's report: the research context and motivation, exploratory data analysis, and any inference, modeling, or conclusions.
-
-## Written report
+# Written report
 
 Your written report must be done using R Markdown. All team members must contribute to the GitHub repository, with regular meaningful commits. 
 
@@ -172,12 +169,12 @@ Please be judicious in what you include in your final write-up.
 
 The written report is worth 60 points, broken down as
 
-Total                                                   | 60 pts
+Total                                                   | 50 pts
 --------------------------------------------------------|--------
-**Introduction/data**                                   | 10 pts
-**Methodology**                                         | 20 pts
-**Results**                                             | 20 pts
-**Discussion**                                          | 10 pts
+**Introduction/data**                                   |  8 pts
+**Methodology**                                         | 17 pts
+**Results**                                             | 17 pts
+**Discussion**                                          |  8 pts
 
 ### Introduction and data
 
@@ -195,42 +192,54 @@ Showcase how you arrived at answers to your question using any techniques we hav
 
 This section is a conclusion and discussion. Provide a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project, or what you would do next if you were going to continue work on the project should also be included.
 
-## Presentation Slides
+# Presentation Slides
 
-In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. You may use any software for making the slides, such as Powerpoint, Keynote, Google Slides, or R Markdown (using the Xaringan package). Introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted to Gradescope. The slides are due on **Thursday, December 17**.
+In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. You may use any software for making the slides, such as Powerpoint, Keynote, Google Slides, or R Markdown (using the Xaringan package). If you are interested in using the RMarkdown Xaringan package (which was used to create all our lecture slides!), see additional information below. 
 
-## Video presentation
+In the presentation, introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted in Canvas. The slides are due on **Thursday, December 17 at 10:00am**.
 
-Sometime before **Thursday, December 17**, you/your group will upload a video presentation of your project to Techsmith Knowmia. Note that all members must present, and that there is a strict **10-minute time limit**.
+The slide deck should have no more than **6 content slides + 1 title slide**. Here is a *suggested* outline as you think through the slides; you do *not* have to use this exact format for the slide deck.
 
-For the presentation, you can speak over your slide deck, similar to the course lesson videos. Your presentation should not just be an account of everything you 
+- Title Slide
+- Slide 1: Introduce the topic and motivation
+- Slide 2: Introduce the data
+- Slide 3 - 4: Highlights from EDA
+- Slide 4 - 5: Modeling/Inference
+- Slide 6: Conclusions + future work
+
+If you're interested in generating your slides in R using the Xaringan package, see installation instructions [here](https://slides.yihui.org/xaringan/#8). You can find a sample folder structure [here](https://github.com/ids-s1-20/PROJECT-TEMPLATE/tree/main/presentation). The file `presentation.Rmd` (contained in the linked repo) will generate [this presentation](https://ids-s1-20.github.io/PROJECT-TEMPLATE/presentation/presentation.html) when knit. If you need help with this, just ask me!
+
+# Video presentation
+
+Sometime before **Thursday, December 17 at 10:00am**, you/your group will upload a video presentation of your project. Note that all members must present, and that there is a strict **10-minute time limit**.
+
+For the presentation, you can speak over your slide deck, similar to the course lesson videos. It's nice if you include thumbnail videos of your faces in the corner, but it's not required. Your presentation should not just be an account of everything you 
 tried ("then we did this, then we did this, etc."), instead it should convey what 
 choices you made, and why, and what you found.
 
 *Recording and submission details to come.*
 
-## Project repository
+# Project repository
 
-In addition to your Gradescope submissions, I will be checking your GitHub repository. This repository should be contributed to equally by all team members and should include
+In addition to your Canvas submissions, I will be checking your GitHub repository. This repository should be contributed to equally by all team members and should include
 
 - RMarkdown files (formatted to clearly present all of your code and results): one for the proposal and one for the final report (feel free to copy/paste between these)
 - Meaningful README file on the GitHub repository that contains a *codebook*
 for relevant variables
 - Dataset(s) (in csv or RData format, in a `/data` folder)
-- Presentation (if using Keynote/PowerPoint/Google Slides, export to PDF and put in repo, in a `/presentation` folder)
 
 Style and format does count for this assignment, so please take the time to make sure everything looks good and your data and code are properly formatted.
 
-The repository must be finalized by **Thursday, December 17**.
+The repository must be finalized by **Thursday, December 17 at 10:00am**.
 
-## Peer teamwork evaluation
+# Peer teamwork evaluation
 
 You will be asked to fill out a survey where you rate the contribution and teamwork of each team member by assigning a contribution percentage for each team member. Filling out the survey is a prerequisite for getting credit on the team member evaluation. If you are suggesting that an individual did less than half the expected contribution given your team size (e.g., for a team of four students, if a student contributed less than 12.5% of the total effort), please
 provide some explanation. If any individual gets an average peer score 
 indicating that this was the case, their grade will be assessed accordingly.
 
 
-## Additional notes and tips
+# Additional notes and tips
 
 The project is very open ended. For instance, in creating a compelling 
 visualization(s) of your data in R, there is no limit on what tools or 
@@ -238,7 +247,7 @@ packages you may use. You do not need to visualize all of the data at once. A si
 
 Before you finalize your write up, make sure the printing of code chunks is turned off with the option `echo = FALSE`. In addition to code chunks, ensure all messages are turned off with the options `warning = FALSE` and `echo = FALSE`. 
 
-Finally, pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count.
+Finally, pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count, and will spelling and grammar.
 
 
 ### Tips
@@ -254,7 +263,7 @@ happen, issues will arise, and that’s fine! Commit and push often, and ask que
 - Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team  members).
 - All team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in  the assignment works.
 
-### Grading summary
+# Grading summary
 
 Grading of the project will take into account the following:
 
