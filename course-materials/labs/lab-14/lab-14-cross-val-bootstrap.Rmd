@@ -117,7 +117,7 @@ gss16_train <- training(gss16_split)
 gss16_test  <- testing(gss16_split)
 ```
 
-3.  Create a recipe with the following steps for predicting `advfront` from `polviews`, `wrkstat`, and `educ` on the `gss_train` data. Name this recipe `gss16_rec_1`. (We'll create one more recipe later, that's why we're naming this recipe `_1`.) Sample code is provided below.
+3.  Create a recipe with the following steps for predicting `advfront` from `polviews`, `wrkstat`, and `educ` on the `gss16_train` data. Name this recipe `gss16_rec_1`. (We'll create one more recipe later, that's why we're naming this recipe `_1`.) Sample code is provided below.
 
 -   `step_other()` to pool values that occur less than 10% of the time (`threshold = 0.10`) in the `wrkstat` variable into `"Other"`.
 

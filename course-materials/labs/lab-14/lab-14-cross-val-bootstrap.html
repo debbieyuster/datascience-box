@@ -603,7 +603,7 @@ counter-reset: subitem;
 <span id="cb3-3"><a href="#cb3-3"></a>gss16_train &lt;-<span class="st"> </span><span class="kw">training</span>(gss16_split)</span>
 <span id="cb3-4"><a href="#cb3-4"></a>gss16_test  &lt;-<span class="st"> </span><span class="kw">testing</span>(gss16_split)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Create a recipe with the following steps for predicting <code>advfront</code> from <code>polviews</code>, <code>wrkstat</code>, and <code>educ</code> on the <code>gss_train</code> data. Name this recipe <code>gss16_rec_1</code>. (We’ll create one more recipe later, that’s why we’re naming this recipe <code>_1</code>.) Sample code is provided below.</li>
+<li>Create a recipe with the following steps for predicting <code>advfront</code> from <code>polviews</code>, <code>wrkstat</code>, and <code>educ</code> on the <code>gss16_train</code> data. Name this recipe <code>gss16_rec_1</code>. (We’ll create one more recipe later, that’s why we’re naming this recipe <code>_1</code>.) Sample code is provided below.</li>
 </ol>
 <ul>
 <li><p><code>step_other()</code> to pool values that occur less than 10% of the time (<code>threshold = 0.10</code>) in the <code>wrkstat</code> variable into <code>&quot;Other&quot;</code>.</p></li>
