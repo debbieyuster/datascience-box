@@ -1,0 +1,248 @@
+---
+title: "Lab 14 - Cross Validation and Bootstrap Confidence Intervals"
+output: 
+  tufte::tufte_html:
+    css: ../lab.css
+    tufte_variant: "envisioned"
+    highlight: pygments
+link-citations: yes
+---
+  
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(out.width = "100%", eval = TRUE)
+```
+
+```{r unsplash, fig.margin = TRUE, echo = FALSE, fig.cap = "Image by mauro mora on Unsplash"}
+knitr::include_graphics("img/mauro-mora-31-pOduwZGE-unsplash.jpg")
+```
+
+Learning goals:
+
++ Fit logistic regression models using tidymodels' recipes and workflows
++ Use v-fold cross validation to validate models
++ Compare model performance using metrics such as area under the ROC curve
++ Calculate and interpret confidence intervals using bootstrapping
+  
+# General Social Survey
+  
+We've worked with the GSS data in a previous homework assignment. The GSS gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes.
+Hundreds of trends have been tracked since 1972.
+In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years.
+
+The GSS contains a standard core of demographic, behavioral, and attitudinal questions, plus topics of special interest.
+Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events.
+
+In this assignment we analyze data from the 2016 GSS, using it to estimate values of population parameters of interest about US adults.[^1]
+
+# Getting started
+
+## Clone your repo
+
+Go to the course GitHub organization and locate your lab repo, which should be named `lab-14-cross-val-bootstrap-YOUR_TEAMNAME`. Grab the URL of the repo, and clone it in our RStudio Cloud **course workspace**.
+
+As you work, be sure to take turns with your groupmates. Only one person should type at a time (and should share their screen while typing). When that person is done, they should Knit, Commit, and Push their changes to GitHub. Then, everyone else should Pull the changes, and the next group member should take over typing and screen sharing.
+
+Hopefully no merge conflicts will arise. If they do, take a deep breath, and resolve them. Ask for help if you need it. Importantly, if you encounter a merge conflict, everyone should stop what they're doing - don't continue working on the lab until the merge conflict is resolved, and everyone has Pulled the resolved files.
+
+## Load packages
+
+We will use the following packages in this analysis:
+  
+```{r message=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(dsbox)
+```
+
+The dataset we will use is called `gss16` and it's in the `dsbox` package.
+
+# Scientific research
+
+In this section we're going to build a model to predict whether someone agrees or doesn't agree with the following statement:
+
+> Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.
+
+The responses to this question are in the `advfront` variable.
+
+## Data Prep
+
+As we did in the GSS homework assignment, we will change the variables `advfront` and `polviews` as follows. Since you already did this in a previous assignment, this time the code will be provided. The provided code accomplishes the following tasks:
+
+- Combines levels of the `advfront` variable such that it has two levels: `"Strongly agree"` and `"Agree"` are combined into a new level called `"Agree"` and the remaining levels (except `NA`s) combined into `"Not agree"`. The levels are then ordered as follows: `"Agree"` and `"Not agree"`.
+
+- Combines levels of the `polviews` variable such that levels containing the word "liberal" are lumped into a level called `"Liberal"` and those containing the word "conservative" are lumped into a level called `"Conservative"`. The levels are then ordered as follows: `"Conservative"` , `"Moderate"`, and `"Liberal"`.
+
+- Creates a new data frame called `gss16_advfront` that includes the variables `advfront`, `educ`, `polviews`, and `wrkstat`. Uses the `drop_na()` function to remove rows that contain `NA`s from this new data frame.
+
+```{marginfigure}
+**Note:** Exercises 1-5 do not require any narrative. Narrative should start with Exercise 6.
+```
+
+1. Run the code below to create the `gss16_advfront` data frame, which was described above.
+
+```{r}
+gss16_advfront <- gss16 %>%
+  mutate(
+    # Modify advfront to have fewer levels
+    advfront = case_when(
+      is.na(advfront) ~ advfront,
+      advfront %in% c("Strongly agree", "Agree") ~ "Agree",
+      TRUE ~ "Not agree"
+    ),
+    # Convert to factor with specified level order
+    advfront = fct_relevel(advfront, "Agree", "Not agree"),
+    # Modify polviews to have fewer levels
+    polviews = case_when(
+      str_detect(polviews, "[Ll]iberal") ~ "Liberal",
+      str_detect(polviews, "[Cc]onservative") ~ "Conservative",
+      TRUE ~ polviews
+    ),
+    # Convert to factor with specified level order
+    polviews = fct_relevel(polviews, "Conservative", "Moderate", "Liberal"),
+  ) %>%
+  # Select the 4 variables of interest and drop rows with NA values
+  select(advfront, educ, polviews, wrkstat) %>%
+  drop_na()
+```
+
+## Modeling and model validation
+
+2.  Split the data into training (75%) and testing (25%) data sets. Make sure to set a seed before you do the `initial_split()`. **For the entire lab activity, your seed should be your group number, repeated 4 times. For example, Group 3 would use the random seed 3333.** Call the training data `gss16_train` and the testing data `gss16_test`. Sample code is provided below. Use these specific names to make it easier to follow the rest of the instructions.
+
+```{r eval=FALSE}
+set.seed(___)
+gss16_split <- initial_split(gss16_advfront)
+gss16_train <- training(gss16_split)
+gss16_test  <- testing(gss16_split)
+```
+
+3.  Create a recipe with the following steps for predicting `advfront` from `polviews`, `wrkstat`, and `educ` on the `gss_train` data. Name this recipe `gss16_rec_1`. (We'll create one more recipe later, that's why we're naming this recipe `_1`.) Sample code is provided below.
+
+-   `step_other()` to pool values that occur less than 10% of the time (`threshold = 0.10`) in the `wrkstat` variable into `"Other"`.
+
+-   `step_dummy()` to create dummy variables for `all_nominal()` variables that are predictors
+<!-- , i.e. `all_predictors()` -->
+
+```{r eval=FALSE}
+gss16_rec_1 <- recipe(___ ~ ___, data = ___) %>%
+  step_other(wrkstat, threshold = ___, other = "Other") %>%
+  step_dummy(all_nominal(), -all_outcomes())
+```
+
+4.  Specify a logistic regression model using `"glm"` as the engine. Name this specification `gss16_spec`. Sample code is provided below.
+
+```{r eval=FALSE}
+gss16_spec <- ___() %>%
+  set_engine("___")
+```
+
+5.  Build a workflow that uses the recipe you defined (`gss16_rec_1`) and the model you specified (`gss16_spec`). Name this workflow `gss16_wflow_1`. Sample code is provided below.
+
+```{r eval=FALSE}
+gss16_wflow_1 <- workflow() %>%
+  add_model(___) %>%
+  add_recipe(___)
+```
+
+6.  Perform 5-fold cross validation. Specifically,
+
+-   Split the training data into 5 folds (don't forget to set a seed first - the same one specified in Exercise 2),
+
+-   Apply the workflow you defined earlier to the folds with `fit_resamples()`, and
+
+-   Use `collect_metrics()` to get the area under the ROC curve and the accuracy for each fold, by setting `summarize = FALSE`. In your narrative, comment on the consistency of metrics across folds.
+
+-   Use `collect_metrics()` to find the average area under the ROC curve and the accuracy for all cross validation folds. In the narrative, report your findings.
+
+```{r eval=FALSE}
+set.seed(___)
+gss16_folds <- vfold_cv(___, v = ___)
+gss16_fit_rs_1 <- gss16_wflow_1 %>%
+  fit_resamples(___)
+collect_metrics(___, summarize = FALSE)
+collect_metrics(___)
+```
+
+7.  Now, try a different, simpler model: predict `advfront` from only `polviews` and `educ`. Specifically,
+
+    -   Update the recipe to reflect this simpler model specification (and name it `gss16_rec_2`),
+
+    -   Redefine the workflow with the new recipe (and name this new workflow `gss16_wflow_2`),
+
+    -   Perform cross validation, and
+
+    -   Report the average area under the ROC curve and the average accuracy across folds using `collect_metrics()`.
+
+8. Comment on which model performs better (Model 1, which includes `wrkstat`, or Model 2, which excludes `wrkstat`) on the training data, based on area under the ROC curve.
+
+9. Now we are ready to make predictions on our testing data. First, train your workflow on the full set of training data. Then, use the resulting object to calculate predictions for the testing data. Plot the resulting ROC curve, and calculate the area under it. Sample code for Model 1 is provided below. Fill in the code and run it, then copy/paste and modify it to repeat the same steps for Model 2.
+Does your answer to the previous exercise hold for the testing data as well? Explain your reasoning.
+
+```{r eval=FALSE}
+# Train models on full training set
+gss16_fit_1 <- gss16_wflow_1 %>%
+  fit(gss16_train)
+# Use fitted model to predict outcomes for test set
+gss16_test_pred_1 <- ____(gss16_fit_1, new_data = gss16_test, type = "prob") %>%
+  bind_cols(gss16_test %>% select(advfront))
+# Plot ROC curve
+gss16_test_pred_1 %>%
+  ____(
+    truth = ____,
+    .pred_Agree,
+    event_level = "first"
+  ) %>%
+  autoplot()
+# Calculate AUC
+gss16_test_pred_1 %>%
+  ____(
+    truth = ____,
+    .pred_Agree,
+    event_level = "first"
+  )
+```
+
+# Botstrap confidence intervals
+
+In 2016, the GSS added a new question on harassment at work.
+The question is phrased as the following.
+
+> Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?
+Answers to this question are stored in the `harass5` variable in our dataset.
+
+10. Create a subset of the data, called `gss16_har`, that only contains `Yes` and `No` answers for the harassment question. How many respondents chose each of these answers? Of these respondents, what was the proportion that reported being harassed at work in the last 5 years?
+
+11. Describe how bootstrapping can be used to estimate the proportion of Americans who have been harassed by their superiors or co-workers at their job in the last 5 years.
+
+12. Using `gss16_har`, calculate a 95% bootstrap confidence interval for the proportion of Americans who have been harassed by their superiors or co-workers at their job in the last 5 years. Interpret this interval in the context of the data. Sample code is provided below.
+
+```{r eval=FALSE}
+gss16_har %>%
+  # Specify the variable of interest
+  specify(response = ____, success = "Yes") %>% 
+  # Generate 2000 bootstrap samples
+  generate(reps = ____, type = "____") %>% 
+  # Calculate the proportion of each bootstrap sample
+  calculate(stat = "prop") %>%
+  # Find the bounds of the 95% CI
+  summarize(lower = quantile(stat, ____),
+            upper = quantile(stat, ____))
+```
+
+
+13. Would you expect a 90% confidence interval to be wider or narrower than the interval you calculated above? Explain your reasoning.
+
+# Wrap up and Submission
+
+Make any final changes, and be sure you've followed code style guidelines. Knit, commit, and push any remaining changes to GitHub.
+
+To submit, one team member should upload the team's PDF to Gradescope. **Be sure to select every team member's name in the Gradescope submission**. Mark where each answer is to the exercises, and associate the "Overall" question with the first page of your PDF. **If any answer spans multiple pages, then mark each of the relevant pages**. The "Overall" points will be given for things like proper GitHub usage and code style. Group members who have not participated sufficiently may receive a lower grade than the rest of the group.
+
+There should only be **one** submission per team on Gradescope.
+
+
+[^1]: Smith, Tom W, Peter Marsden, Michael Hout, and Jibum Kim.
+    General Social Surveys, 1972-2016 [machine-readable data file] /Principal Investigator, Tom W. Smith; Co-Principal Investigator, Peter V. Marsden; Co-Principal Investigator, Michael Hout; Sponsored by National Science Foundation.
+    -NORC ed.- Chicago: NORC at the University of Chicago [producer and distributor].
+    Data accessed from the GSS Data Explorer website at gssdataexplorer.norc.org.
