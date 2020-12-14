@@ -211,13 +211,18 @@ If you're interested in generating your slides in R using the Xaringan package, 
 
 # Video presentation
 
-Sometime before **Thursday, December 17 at 10:00am**, you/your group will upload a video presentation of your project. Note that all members must present, and that there is a strict **10-minute time limit**.
+Sometime before **Thursday, December 17 at 10:00am**, you/your group will upload a video presentation of your project. Note that all members must present, and that there is a strict **10-minute time limit**. Your submission for the video will be a **link** to the video, stored in the cloud (could be stored in your Ramapo accounts for Webex, Techsmith Knowmia, or Google Drive, for example). Your video does not need to be publicly accessible! It can be "unlisted" and available only to those with the link, or you may password protect it - be sure to submit the password so I have it.
 
-For the presentation, you can speak over your slide deck, similar to the course lesson videos. It's nice if you include thumbnail videos of your faces in the corner, but it's not required. Your presentation should not just be an account of everything you 
-tried ("then we did this, then we did this, etc."), instead it should convey what 
-choices you made, and why, and what you found.
+For the presentation, you can speak over your slide deck, similar to the course lesson videos. It's nice if you include thumbnail videos of your faces in the corner, but it's not required. Your presentation should be a self-contained overview of your project, taking viewers through the background, questions you set out to answer, how you approached the questions, results, and a conclusion/future work.
+<!-- not just be an account of everything you  -->
+<!-- tried ("then we did this, then we did this, etc."), instead it should convey what  -->
+<!-- choices you made, and why, and what you found. -->
 
-*Recording and submission details to come.*
+You can record the video however you like. One suggestion would be to use **Webex**. You can schedule a Webex meeting for your group and record the meeting. Have one person share the slides, and then give your presentation in this meeting. The recording will be stored in the meeting host's Webex account, accessible at [http://ramapo.webex.com](http://ramapo.webex.com). You'll be able to trim the beginning and end of the video through the Webex site - here are [instructions](https://help.webex.com/en-us/0zbv00/Trim-the-Beginning-and-End-of-Your-Webex-Meetings-or-Events-Recording). Before the meeting, I recommend that the host go to the [Webex site](http://ramapo.webex.com) and configure the following settings for recordings - **be sure to Save the settings after you configure them!**
+
+```{r echo = FALSE, fig.cap = "Recommended settings for Webex recording"}
+knitr::include_graphics("img/webex-settings.PNG")
+```
 
 # Project repository
 
