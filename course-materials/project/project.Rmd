@@ -198,7 +198,7 @@ In addition to the write-up, your team must also create presentation slides that
 
 In the presentation, introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted in Canvas. The slides are due on **Thursday, December 17 at 10:00am**.
 
-The slide deck should have no more than **6 content slides + 1 title slide**. Here is a *suggested* outline as you think through the slides; you do *not* have to use this exact format for the slide deck.
+The slide deck should have no more than **6-8 content slides + 1 title slide**. Here is a *suggested* outline as you think through the slides; you do *not* have to use this exact format for the slide deck.
 
 - Title Slide
 - Slide 1: Introduce the topic and motivation
